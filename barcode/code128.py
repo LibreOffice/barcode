@@ -446,125 +446,125 @@ decode_A = {}
 decode_B = {}
 decode_C = {}
 for a, b, c, num in zip( code_A, code_B, code_C, range( len( code_A ) ) ):
-	encode_A[a] = num
-	encode_B[b] = num
-	encode_C[c] = num
-	decode_A[num] = a
-	decode_B[num] = b
-	decode_C[num] = c
+    encode_A[a] = num
+    encode_B[b] = num
+    encode_C[c] = num
+    decode_A[num] = a
+    decode_B[num] = b
+    decode_C[num] = c
 
 def bestcode( input ):
-	'''
-	Find the optimal code 128 encoding of a given string.
-	Returns a list of code indices (as numbers). To get the final encoding call binary() with this list as parameter.
-	Runs in linear time using a DP approach.
-	'''
-	# this is our DP table:
-	best_A = [(encode_A['[START A]'],)] + [None for i in range( len( input ) )]
-	best_B = [(encode_B['[START B]'],)] + [None for i in range( len( input ) )]
-	best_C = [(encode_C['[START C]'],)] + [None for i in range( len( input ) )]
-	# for an input of length N we have a table of 3 rows and N+1 columns
-	# the cell in row X and column Y contains the best encoding of the first Y characters that ends up in mode X
+    '''
+    Find the optimal code 128 encoding of a given string.
+    Returns a list of code indices (as numbers). To get the final encoding call binary() with this list as parameter.
+    Runs in linear time using a DP approach.
+    '''
+    # this is our DP table:
+    best_A = [(encode_A['[START A]'],)] + [None for i in range( len( input ) )]
+    best_B = [(encode_B['[START B]'],)] + [None for i in range( len( input ) )]
+    best_C = [(encode_C['[START C]'],)] + [None for i in range( len( input ) )]
+    # for an input of length N we have a table of 3 rows and N+1 columns
+    # the cell in row X and column Y contains the best encoding of the first Y characters that ends up in mode X
 
-	def shortest( *args ):
-		l = [(len( x ), x) for x in args if x is not None]
-		if len( l ) == 0:
-			return None
-		else:
-			return min( l )[1]
-	def getbest( i ):
-		return shortest( best_A[i], best_B[i], best_C[i] )
-	for i in range( len( input ) ):
-		rest = input[i:]
-		bestlast = getbest( i )
-		# if something can be encoded at the current position set the corresponding cell
-		# possible contenders are:
-		#	- the contents of the cell (best encoding for that situation so far)
-		#	- the best encoding until the current position in our mode + the encoded symbol
-		#	- the best encoding until the current position in some other mode + the mode switch + the encoded symbol
-		for x in code_A:
-			if rest.startswith( x ):
-				best_A[i + len( x )] = shortest( best_A[i + len( x )], best_A[i] + (encode_A[x],), bestlast + (encode_B['[Code A]'], encode_A[x]) )
-				# consider using this encoding via SHIFTing from B
-				best_B[i + len( x )] = shortest( best_B[i + len( x )], best_B[i] + (encode_B['[SHIFT A]'], encode_A[x]) )
-		for x in code_B:
-			if rest.startswith( x ):
-				best_B[i + len( x )] = shortest( best_B[i + len( x )], best_B[i] + (encode_B[x],), bestlast + (encode_C['[Code B]'], encode_B[x]) )
-				# consider using this encoding via SHIFTing from A
-				best_A[i + len( x )] = shortest( best_A[i + len( x )], best_A[i] + (encode_A['[SHIFT B]'], encode_B[x]) )
-		for x in code_C:
-			if rest.startswith( x ):
-				best_C[i + len( x )] = shortest( best_C[i + len( x )], best_C[i] + (encode_C[x],), bestlast + (encode_A['[Code C]'], encode_C[x]) )
+    def shortest( *args ):
+        l = [(len( x ), x) for x in args if x is not None]
+        if len( l ) == 0:
+            return None
+        else:
+            return min( l )[1]
+    def getbest( i ):
+        return shortest( best_A[i], best_B[i], best_C[i] )
+    for i in range( len( input ) ):
+        rest = input[i:]
+        bestlast = getbest( i )
+        # if something can be encoded at the current position set the corresponding cell
+        # possible contenders are:
+        #	- the contents of the cell (best encoding for that situation so far)
+        #	- the best encoding until the current position in our mode + the encoded symbol
+        #	- the best encoding until the current position in some other mode + the mode switch + the encoded symbol
+        for x in code_A:
+            if rest.startswith( x ):
+                best_A[i + len( x )] = shortest( best_A[i + len( x )], best_A[i] + (encode_A[x],), bestlast + (encode_B['[Code A]'], encode_A[x]) )
+                # consider using this encoding via SHIFTing from B
+                best_B[i + len( x )] = shortest( best_B[i + len( x )], best_B[i] + (encode_B['[SHIFT A]'], encode_A[x]) )
+        for x in code_B:
+            if rest.startswith( x ):
+                best_B[i + len( x )] = shortest( best_B[i + len( x )], best_B[i] + (encode_B[x],), bestlast + (encode_C['[Code B]'], encode_B[x]) )
+                # consider using this encoding via SHIFTing from A
+                best_A[i + len( x )] = shortest( best_A[i + len( x )], best_A[i] + (encode_A['[SHIFT B]'], encode_B[x]) )
+        for x in code_C:
+            if rest.startswith( x ):
+                best_C[i + len( x )] = shortest( best_C[i + len( x )], best_C[i] + (encode_C[x],), bestlast + (encode_A['[Code C]'], encode_C[x]) )
 
-		bestnext = getbest( i + 1 )
-		if bestnext is None: continue
-		# if the next character can not be encoded in a mode we still have to fill that cell
-		# possible contenders are:
-		#	- the contents of the cell (best encoding for the situation so far)
-		#	- best cell in this column (best encoding in some other mode) + the cost of switching to our mode
-		best_A[i + 1] = shortest( best_A[i + 1], bestnext + (encode_B['[Code A]'],) )
-		best_B[i + 1] = shortest( best_B[i + 1], bestnext + (encode_C['[Code B]'],) )
-		best_C[i + 1] = shortest( best_C[i + 1], bestnext + (encode_A['[Code C]'],) )
+        bestnext = getbest( i + 1 )
+        if bestnext is None: continue
+        # if the next character can not be encoded in a mode we still have to fill that cell
+        # possible contenders are:
+        #	- the contents of the cell (best encoding for the situation so far)
+        #	- best cell in this column (best encoding in some other mode) + the cost of switching to our mode
+        best_A[i + 1] = shortest( best_A[i + 1], bestnext + (encode_B['[Code A]'],) )
+        best_B[i + 1] = shortest( best_B[i + 1], bestnext + (encode_C['[Code B]'],) )
+        best_C[i + 1] = shortest( best_C[i + 1], bestnext + (encode_A['[Code C]'],) )
 
-	# the best encoding of the entire string is the best in the last column
-	return getbest( len( input ) )
+    # the best encoding of the entire string is the best in the last column
+    return getbest( len( input ) )
 
 def binary( code ):
-	'''
-	Convert a list of code indices to a binary string.
-	'''
-	return ''.join( [encoding[x] for x in code] )
+    '''
+    Convert a list of code indices to a binary string.
+    '''
+    return ''.join( [encoding[x] for x in code] )
 
 def decode( code, verbose = False ):
-	'''
-	Decode a coded string given as a list of code indices. For testing purposes.
-	'''
-	decode = decode_A
-	nextdecode = decode
-	for c in code:
-		d = decode[c]
-		decode = nextdecode
-		if d == '[START A]' or d == '[Code A]':
-			nextdecode = decode = decode_A
-		elif d == '[START B]' or d == '[Code B]':
-			nextdecode = decode = decode_B
-		elif d == '[START C]' or d == '[Code C]':
-			nextdecode = decode = decode_C
-		elif d == '[SHIFT A]':
-			nextdecode = decode
-			decode = decode_A
-		elif d == '[SHIFT B]':
-			nextdecode = decode
-			decode = decode_B
-		elif not verbose:
-			yield d
-		if verbose:
-			yield d
+    '''
+    Decode a coded string given as a list of code indices. For testing purposes.
+    '''
+    decode = decode_A
+    nextdecode = decode
+    for c in code:
+        d = decode[c]
+        decode = nextdecode
+        if d == '[START A]' or d == '[Code A]':
+            nextdecode = decode = decode_A
+        elif d == '[START B]' or d == '[Code B]':
+            nextdecode = decode = decode_B
+        elif d == '[START C]' or d == '[Code C]':
+            nextdecode = decode = decode_C
+        elif d == '[SHIFT A]':
+            nextdecode = decode
+            decode = decode_A
+        elif d == '[SHIFT B]':
+            nextdecode = decode
+            decode = decode_B
+        elif not verbose:
+            yield d
+        if verbose:
+            yield d
 
 def checksum( code ):
-	'''
-	Calculate the checksum for a coded string given as a list of code indices.
-	'''
-	sum = code[0]
-	for i in range( 1, len( code ) ):
-		sum += i * code[i]
-	return sum % 103
+    '''
+    Calculate the checksum for a coded string given as a list of code indices.
+    '''
+    sum = code[0]
+    for i in range( 1, len( code ) ):
+        sum += i * code[i]
+    return sum % 103
 
 def encode( input ):
-	'''
-	Optimally encodes an input in code 128, complete with checksum and stop. Returns code as a binary string or None if no encoding can be found.
-	'''
-	encoded = bestcode( input )
-	if encoded is None:
-		return None
-	return binary( encoded + (checksum( encoded ), encode_A['[STOP]']) )
+    '''
+    Optimally encodes an input in code 128, complete with checksum and stop. Returns code as a binary string or None if no encoding can be found.
+    '''
+    encoded = bestcode( input )
+    if encoded is None:
+        return None
+    return binary( encoded + (checksum( encoded ), encode_A['[STOP]']) )
 
 if __name__ == '__main__':
-	import sys
-	encoded = bestcode( sys.argv[1] )
-	print sys.argv[1]
-	print 'encoded:', encoded
-	print 'decoded:', [x for x in decode( encoded, verbose = True )]
-	print 'checksum:', checksum( encoded )
-	print 'binary:', encode( sys.argv[1] )
+    import sys
+    encoded = bestcode( sys.argv[1] )
+    print sys.argv[1]
+    print 'encoded:', encoded
+    print 'decoded:', [x for x in decode( encoded, verbose = True )]
+    print 'checksum:', checksum( encoded )
+    print 'binary:', encode( sys.argv[1] )
 
