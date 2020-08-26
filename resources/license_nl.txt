@@ -6,7 +6,7 @@ Deze extensie is te gebruiken na het herstarten van het programma. Als de Snelst
 
 Dit is een voorbeeld-extensie gemaakt met EuroOffice Extension Creator (van MultiRacio Ltd.).
 
-Bezoek als u vragen heeft https://launchpad.net/eoec/
+Bezoek als u vragen heeft https://github.com/LibreOffice/barcode/
 
 De belangrijkste bijdragen aan de ontwikkeling van deze extensie zijn geleverd door: Daniel Darabos, Kalman Szalai
 

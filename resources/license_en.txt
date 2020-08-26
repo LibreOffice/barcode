@@ -6,7 +6,7 @@ This extension will become active after you restart the application. If you have
 
 This is an example extension created with EuroOffice Extension Creator (by MultiRacio Ltd.).
 
-If you have any questions visit https://launchpad.net/eoec/
+If you have any questions visit https://github.com/LibreOffice/barcode/
 
 Primary contributors to the development of this extension were: Daniel Darabos, Kalman Szalai
 

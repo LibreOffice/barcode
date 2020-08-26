@@ -6,15 +6,15 @@ Ovaj dodatak će postati aktivan nakon što ponovo pokrenete program. Ako imate 
 
 Ovo je primer dodatka kakvi se mogu napraviti uz EuroOffice konstruktor dodataka (koji pravi MultiRacio Ltd.).
 
-Za pitanja i komentare posetite https://launchpad.net/eoec/
+Za pitanja i komentare posetite https://github.com/LibreOffice/barcode/
 
 Izradi ovog dodatka najviše su doprineli Daniel Darabos i Kalman Szalai
 
 =========== USLOVI KORIŠĆENJA ===========
 
 Ovaj program je slobodan softver; možete ga raspodeljivati i/ili ga menjati pod
-uslovima GNU Opšte Javne Licence (GNU GPL) kako je objavljuje Zadužbina za 
-Slobodni Softver (FSF); bilo verzije 3 te Licence, bilo (po vašem nahođenju) 
+uslovima GNU Opšte Javne Licence (GNU GPL) kako je objavljuje Zadužbina za
+Slobodni Softver (FSF); bilo verzije 3 te Licence, bilo (po vašem nahođenju)
 bilo koje novije verzije.
 
 Ovaj program se raspodeljuje u nadi da će biti od koristi, ali BEZ IKAKVIH

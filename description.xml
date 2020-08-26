@@ -15,7 +15,7 @@
 		</simple-license>
 	</registration>
 	<publisher>
-		<name lang="en" xlink:href="https://www.documentfoundation.org/">The Document Foundation</name>
+		<name lang="en" xlink:href="https://github.com/LibreOffice/barcode">The Document Foundation</name>
 	</publisher>
 	<display-name>
 		<name lang="de">Strichcode</name>

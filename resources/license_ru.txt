@@ -6,7 +6,7 @@
 
 Это расширение было создана с помощью Конструктора Расширений EuroOffice (создано MultiRacio Ltd.).
 
-Если у вас есть какие-либо вопросы, посетите https://launchpad.net/eoec/
+Если у вас есть какие-либо вопросы, посетите https://github.com/LibreOffice/barcode/
 
 Основной вклад в разработку расширения сделали Daniel Darabos и Kalman Szalai
 
