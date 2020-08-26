@@ -1,9 +1,20 @@
 from generatedsettings import DEBUG
+import importlib
+import glob
+import os
+import sys
+import random
+import traceback
 if DEBUG:
     from generatedsettings import HOME
 
 import uno
 import unohelper
+
+from com.sun.star.beans import XPropertySet
+from com.sun.star.task import XJob, XJobExecutor
+from com.sun.star.lang import XServiceName, XInitialization, XComponent, XServiceInfo, XServiceDisplayName
+
 
 def typednamedvalues( type, *args, **kwargs ):
     if args:
@@ -11,15 +22,13 @@ def typednamedvalues( type, *args, **kwargs ):
     else:
         dict = kwargs
     props = []
-    for k, v in dict.items():
+    for k, v in list(dict.items()):
         p = uno.createUnoStruct( type )
         p.Name = k
         p.Value = v
         props.append( p )
     return tuple( props )
 
-from com.sun.star.beans import XPropertySet
-from com.sun.star.lang import XServiceInfo
 class propset( unohelper.Base, XPropertySet, XServiceInfo ):
     def __init__( self, *args, **kwargs ):
         if args:
@@ -82,28 +91,6 @@ class EasyDict( dict ):
         return key in self
     def __setattr__( self, key, value ):
         self[key] = value
-        
-def safeeval( code ):
-    safenodes = 'Const', 'Dict', 'List', 'Tuple', 'Module', 'Stmt', 'Discard', 'UnarySub'
-    safenames = 'True', 'False', 'None'
-    def validate( node ):
-        if node.__class__.__name__ == 'Name':
-            assert node.name in safenames, 'unsafe node: ' + str( node )
-        else:
-            assert node.__class__.__name__ in safenodes, 'unsafe node: ' + str( node )
-        for n in node.getChildNodes():
-            validate( n )
-    try:
-        import compiler
-        ast = compiler.parse( code )
-        validate( ast )
-    except:
-        debug( 'exception while evaluating "%s"'%code )
-        debugexception()
-        return {}
-    return eval( code ) 
-
-
 
 def unprops( props ):
     dict = EasyDict()
@@ -114,7 +101,6 @@ def unprops( props ):
 DEBUGFILEPLATFORMS = 'win32', 'darwin'
 def initdebug():
     global debugfile
-    import sys, random
     if sys.platform == 'win32':
         debugfile = 'c:\\debug.txt' #+ str( random.randint( 100, 999 ) )
     else:
@@ -129,14 +115,13 @@ if DEBUG:
 def debug( *msgs ):
     try:
         if not DEBUG: return
-        import sys
         if sys.platform in DEBUGFILEPLATFORMS:
             f = file( debugfile, 'a' )
             for msg in msgs:
-                f.write( unicode( msg ).encode( 'utf-8' ) )
+                f.write( str( msg ).encode( 'utf-8' ) )
                 f.write( '\n' )
         else:
-            print msgs
+            print(msgs)
     except:
         debugexception()
 
@@ -147,22 +132,18 @@ def dd( *args ):
 
 def debugexception():
     if not DEBUG: return
-    import sys
     if sys.platform in DEBUGFILEPLATFORMS:
         f = file( debugfile, 'a' )
     else:
         f = sys.stdout
-    import traceback
     traceback.print_exc( file=f )
 
 def debugstack():
     if not DEBUG: return
-    import sys
     if sys.platform in DEBUGFILEPLATFORMS:
         f = file( debugfile, 'a' )
     else:
         f = sys.stdout
-    import traceback
     traceback.print_stack( file=f )
 
 documenttypes = [
@@ -172,57 +153,13 @@ documenttypes = [
     'com.sun.star.text.WebDocument',
     'com.sun.star.drawing.DrawingDocument',
     'com.sun.star.presentation.PresentationDocument',
-#	'com.sun.star.chart.ChartDocument',
+#    'com.sun.star.chart.ChartDocument',
     'com.sun.star.formula.FormulaProperties',
         ]
 
-
-class SelfUpdating( object ):
-    if DEBUG:
-        def __getattribute__( self, attr ):
-            if not attr.startswith( '__' ) or not attr.endswith( '__' ):
-                import sys, os
-                modulename = self.__class__.__module__
-                module = sys.modules[modulename]
-                modulefile = module.__file__
-                if modulefile.endswith( '.pyc' ) or modulefile.endswith( '.pyo' ):
-                    modulefile = modulefile[:-1]
-                lastmod = os.stat( modulefile ).st_mtime
-                moduletime = getattr( module, '__loadtime__', 0 )
-                if lastmod > moduletime:
-                    debug( 'reloading %s'%modulefile )
-                    reload( module )
-                    module.__loadtime__ = lastmod
-                classtime = getattr( self.__class__, '__loadtime__', 0 )
-                if lastmod > classtime:
-                    cls = getattr( module, self.__class__.__name__ )
-                    cls.__loadtime__ = lastmod
-                    self.__class__.__loadtime__ = lastmod
-                    import types
-                    for name in dir( cls ):
-                        if name.startswith( '__' ) and name.endswith( '__' ):
-                            continue
-                        obj = getattr( cls, name )
-                        if isinstance( obj, types.UnboundMethodType ):
-                            setattr( self.__class__, name, types.UnboundMethodType( obj.im_func, None, self.__class__ ) )
-                selftime = getattr( self, '__loadtime__', 0 )
-                if classtime > selftime:
-                    self.__loadtime__ = classtime
-                    import types
-                    for name in dir( self.__class__ ):
-                        if name.startswith( '__' ) and name.endswith( '__' ):
-                            continue
-                        obj = getattr( self.__class__, name )
-                        if isinstance( obj, types.UnboundMethodType ):
-                            setattr( self, name, types.MethodType( obj.im_func, self, self.__class__ ) )
-            return super( SelfUpdating, self ).__getattribute__( attr )
-
-
 runninginstance = None
 
-from com.sun.star.task import XJob, XJobExecutor
-from com.sun.star.lang import XServiceName, XInitialization, XComponent, XServiceInfo, XServiceDisplayName
-class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization, XComponent, XServiceInfo, XServiceDisplayName, XJobExecutor, XJob ):
+class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, XServiceInfo, XServiceDisplayName, XJobExecutor, XJob ):
     def __init__( self, *args ):
         # store the component context for later use
         try:
@@ -282,7 +219,7 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
             self.uninstall()
         except:
             debugexception()
-        self.config.FirstRun = True	# will need to run install again (in case we are reinstalled)
+        self.config.FirstRun = True    # will need to run install again (in case we are reinstalled)
         self.config.commitChanges()
     def uninstall( self ):
         '''
@@ -306,14 +243,13 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
         expander = self.ctx.getValueByName( '/singletons/com.sun.star.util.theMacroExpander' )
         path = expander.expandMacros( path )
         path = path[len( 'vnd.sun.star.expand:' ):]
-        import os
         path = unohelper.absolutize( os.getcwd(), path )
         path = unohelper.fileUrlToSystemPath( path )
         self.path = path
 
     def initlanguage( self ):
         config = self.getconfig( '/org.openoffice.Setup' )
-        self.uilanguage = config.L10N.ooLocale.encode( 'ascii' ).split( '-' )[0]
+        self.uilanguage = config.L10N.ooLocale.split( '-' )[0]
         if self.uilanguage not in self.SUPPORTED_LANGUAGES: self.uilanguage = self.SUPPORTED_LANGUAGES[0]
 
     def localize( self, string, language = None ):
@@ -321,22 +257,24 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
             language = self.uilanguage
         if not hasattr( self, 'localization' ):
             self.loadlocalization()
-        if string not in self.localization: return 'unlocalized: '+string		# debug
+        if string not in self.localization: return 'unlocalized: '+string        # debug
         if language in self.localization[string]:
             return self.localization[string][language]
         elif self.SUPPORTED_LANGUAGES[0] in self.localization[string] and not DEBUG:
             return self.localization[string][self.SUPPORTED_LANGUAGES[0]]
         else:
-            return 'unlocalized for %s: %s'%(language, string)		# debug
+            return 'unlocalized for %s: %s'%(language, string)        # debug
     def loadlocalization( self ):
         self.localization = {}
         try:
             dir = 'EOEC%sDialogs'%self.__class__.__name__
-            import glob, os
-            for f in glob.glob( os.path.join( self.path, dir, 'DialogStrings_*.properties' ) ):
-                sf = os.path.split( f )[-1]
+            for filename in glob.glob( os.path.join( self.path, dir, 'DialogStrings_*.properties' ) ):
+                sf = os.path.split( filename )[-1]
                 lang = sf[sf.index( '_' )+1:sf.index( '_' )+3]
-                for l in file( f ):
+                with open(filename) as f:
+                    content = f.readlines()
+
+                for l in content:
                     l = l.split( '#' )[0].strip()
                     if len( l ) == 0: continue
                     assert '=' in l
@@ -345,13 +283,13 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
                     value = value.strip()
                     if key not in self.localization:
                         self.localization[key] = {}
-                    self.localization[key][lang] = value.decode( 'unicode_escape' ).replace( '\\', '' )
+                    self.localization[key][lang] = value.replace( '\\', '' )
         except:
             debugexception()
 
     def trigger( self, arg ):
         try:
-            getattr( self, arg.encode( 'ascii' ) )()
+            getattr( self, arg )()
         except Exception:
             debugexception()
 
@@ -365,7 +303,7 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
             for i in range( items.getCount() ):
                 menu = unprops( items.getByIndex( i ) )
                 line = [tabs]
-                keys = menu.keys()
+                keys = list(menu.keys())
                 keys.sort()
                 for k in keys:
                     line.append( '%s: %s'%(k, menu[k]) )
@@ -472,7 +410,7 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
     def execute( self, args ):
         try:
             args = unprops( unprops( args ).Environment )
-            getattr( self, args.EventName.encode( 'ascii' ) )()
+            getattr( self, args.EventName )()
         except Exception:
             debugexception()
 
@@ -494,11 +432,11 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
 
     def box( self, message, kind = 'infobox', buttons = 'OK', title = None ):
         if kind == 'infobox' and buttons != 'OK':
-            kind = 'querybox'	# infobox only supports OK
+            kind = 'querybox'    # infobox only supports OK
         if title is None: title = self.localize( 'title' )
         toolkit = self.ctx.ServiceManager.createInstance( 'com.sun.star.awt.Toolkit' )
         rectangle = uno.createUnoStruct( 'com.sun.star.awt.Rectangle' )
-        msgbox = toolkit.createMessageBox( self.getdesktop().getCurrentFrame().getContainerWindow(), rectangle,
+        msgbox = toolkit.createMessageBox( self.getdesktop().getCurrentFrame().getContainerWindow(),
             kind, uno.getConstantByName( 'com.sun.star.awt.MessageBoxButtons.BUTTONS_'+buttons ),
             title, message )
         return msgbox.execute()
@@ -513,8 +451,6 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
         try:
             if format is None:
                 format = 'An unexpected error (%(kind)s) occured at line %(linenumber)s of %(filename)s.'
-            import sys
-            import traceback
             tb = traceback.extract_tb( sys.exc_info()[2] )
             exc = EasyDict()
             exc.kind = sys.exc_info()[0]
@@ -522,7 +458,6 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
             exc.linenumber = tb[-1][1]
             exc.functionname = tb[-1][2]
             exc.text = tb[-1][3]
-            import os
             exc.filename = os.path.split( exc.filename )[1]
             self.box( format%exc, 'errorbox' )
         except:
@@ -547,30 +482,4 @@ class ComponentBase( SelfUpdating, unohelper.Base, XServiceName, XInitialization
         except Exception:
             debugexception()
     getServiceName = classmethod( getServiceName )
-
-def init( cls, *services ):
-    services = list( services )
-    job = 'com.sun.star.task.Job'
-    if job not in services:
-        services.append( job )
-    cls.services = tuple( services )
-    global xg_ImplementationHelper
-    xg_ImplementationHelper = unohelper.ImplementationHelper()
-    xg_ImplementationHelper.addImplementation( cls, cls.getServiceName(), tuple( services ) )
-
-installed = False
-
-def writeRegistryInfo( mgr, key ):
-    try:
-        if installed:
-            if runninginstance is not None:
-                runninginstance.coreuninstall()
-    except:
-        debugexception()
-    return xg_ImplementationHelper.writeRegistryInfo( key, mgr )
-
-def getComponentFactory( name, mgr, key ):
-    global installed
-    installed = True
-    return xg_ImplementationHelper.getComponentFactory( name, key, mgr )
 

@@ -1,0 +1,10 @@
+#UNO project configuration file
+#Tue Aug 25 12:13:58 CEST 2020
+project.prefix=org.openoffice
+project.language=Python
+project.ooo=LibreOfficeDev 7.1
+project.idl=/idl
+project.implementation=barcode
+project.build=build
+project.sdk=7.0.0.0
+project.srcdir=/barcode

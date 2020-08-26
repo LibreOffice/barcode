@@ -1,18 +1,29 @@
-try:
-    # newer Pythons do not support relative imports, OOo Python does not seem to support absolute import
-    import barcode.extensioncore		# non-"from" import gives more relevant error message (see uno.py)
-    from barcode.extensioncore import *
-except ImportError:
-    import extensioncore			# non-"from" import gives more relevant error message (see uno.py)
-    from extensioncore import *
+# For Debugging type pydevd and request a code-completion.
+# Choose the first suggestion and you will see something like:
+#    import sys;sys.path.append(r/some/path/eclipse/plugins/org.python.pydev.core_6.5.0.201809011628/pysrc)
+#    import pydevd;pydevd.settrace()
+# Place pydevd.settrace() before the line you want the debugger to stop and
+# start debugging your extension (right click on project -> Debug As -> LibreOffice extension)
+# You need to manually switch to debug view in Eclipse then.
 
-SUPPORTED_LANGUAGES = 'en', 'da', 'de', 'fr', 'hu', 'ja', 'nl', 'sh', 'sr', 'zh'	# first one is default
+import sys
+import os
+import uno, unohelper
+from com.sun.star.task import XJobExecutor
+from com.sun.star.document import XEventListener
+from com.sun.star.awt import XMouseListener, XActionListener
+
+import draw
+import code128
+from extensioncore import *
+
+
+SUPPORTED_LANGUAGES = ('en', 'da', 'de', 'fr', 'hu', 'ja', 'nl', 'sh', 'sr', 'zh')    # first one is default
 
 com_sun_star_awt_SystemPointer_ARROW = uno.getConstantByName( 'com.sun.star.awt.SystemPointer.ARROW' )
 com_sun_star_awt_SystemPointer_REFHAND = uno.getConstantByName( 'com.sun.star.awt.SystemPointer.REFHAND' )
 com_sun_star_drawing_TextHorizontalAdjust_CENTER = 1
-
-from com.sun.star.awt import XMouseListener, XActionListener
+ 
 class Barcode( ComponentBase, XMouseListener, XActionListener ):
     SUPPORTED_LANGUAGES = SUPPORTED_LANGUAGES
     def firstrun( self ):
@@ -38,6 +49,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         dlg.WithChecksum.State = self.config.LastChecksum
         dlg.HeightModify.Text = self.config.HeightModify
         dlg.WidthModify.Text = self.config.WidthModify
+        
         while True:
             ok = dlg.execute()
             if not ok:
@@ -56,8 +68,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
                 self.barlengthmodify = dlg.HeightModify.Text
                 self.barwidthmodify = dlg.WidthModify.Text
                 group = getattr( self, 'draw_%s'%codetype )( value, dlg.WithChecksum.State )
-                import util.draw
-                util.draw.setpos( group, 5000, 5000 )
+                draw.setpos( group, 5000, 5000 )
                 return
 # Removes spaces and minus sign (-) characters from the input value
     def remove_spaces( self, value ):
@@ -186,7 +197,6 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
             return None
         return self.validate_just_digits( value )
     def validate_CODE128( self, value, add_checksum ):
-        import code128
         if code128.encode( value ) is None:
             self.box( self.localize( 'CODE-128-can-not-be-encoded' ) )
             return None
@@ -195,69 +205,69 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         return value
     CODETYPES = 'EAN13', 'ISBN13', 'Bookland', 'UPCA', 'JAN', 'EAN8', 'UPCE', 'STANDARD2OF5', 'INTERLEAVED2OF5', 'CODE128'
     UPC_TABLE = {
-        '0':	'0001101',
-        '1':	'0011001',
-        '2':	'0010011',
-        '3':	'0111101',
-        '4':	'0100011',
-        '5':	'0110001',
-        '6':	'0101111',
-        '7':	'0111011',
-        '8':	'0110111',
-        '9':	'0001011',
+        '0':    '0001101',
+        '1':    '0011001',
+        '2':    '0010011',
+        '3':    '0111101',
+        '4':    '0100011',
+        '5':    '0110001',
+        '6':    '0101111',
+        '7':    '0111011',
+        '8':    '0110111',
+        '9':    '0001011',
         }
-    UPC_REVERSED_TABLE = dict( [(k, v.replace( '0', 'X' ).replace( '1', '0' ).replace( 'X', '1' )) for (k, v) in UPC_TABLE.items()] )
+    UPC_REVERSED_TABLE = dict( [(k, v.replace( '0', 'X' ).replace( '1', '0' ).replace( 'X', '1' )) for (k, v) in list(UPC_TABLE.items())] )
     EAN_L_TABLE = UPC_TABLE
     EAN_G_TABLE = {
-        '0':	'0100111',
-        '1':	'0110011',
-        '2':	'0011011',
-        '3':	'0100001',
-        '4':	'0011101',
-        '5':	'0111001',
-        '6':	'0000101',
-        '7':	'0010001',
-        '8':	'0001001',
-        '9':	'0010111',
+        '0':    '0100111',
+        '1':    '0110011',
+        '2':    '0011011',
+        '3':    '0100001',
+        '4':    '0011101',
+        '5':    '0111001',
+        '6':    '0000101',
+        '7':    '0010001',
+        '8':    '0001001',
+        '9':    '0010111',
         }
     EAN_R_TABLE = UPC_REVERSED_TABLE
-    EAN_LG_TABLE = {		# the first digit and this table are used to decide when to use the L and G tables on the left side in EAN-13
-        '0':	'LLLLLL',
-        '1':	'LLGLGG',
-        '2':	'LLGGLG',
-        '3':	'LLGGGL',
-        '4':	'LGLLGG',
-        '5':	'LGGLLG',
-        '6':	'LGGGLL',
-        '7':	'LGLGLG',
-        '8':	'LGLGGL',
-        '9':	'LGGLGL',
+    EAN_LG_TABLE = {        # the first digit and this table are used to decide when to use the L and G tables on the left side in EAN-13
+        '0':    'LLLLLL',
+        '1':    'LLGLGG',
+        '2':    'LLGGLG',
+        '3':    'LLGGGL',
+        '4':    'LGLLGG',
+        '5':    'LGGLLG',
+        '6':    'LGGGLL',
+        '7':    'LGLGLG',
+        '8':    'LGLGGL',
+        '9':    'LGGLGL',
         }
     # the UPC-E parity encoding table is the inverse of EAN_LG_TABLE except for index 0
     # the checksum digit and this table are used to decide when to use the L and G tables in UPC-E
     UPCE_LG_TABLE = {
-        '0':	'GGGLLL',
-        '1':	'GGLGLL',
-        '2':	'GGLLGL',
-        '3':	'GGLLLG',
-        '4':	'GLGGLL',
-        '5':	'GLLGGL',
-        '6':	'GLLLGG',
-        '7':	'GLGLGL',
-        '8':	'GLGLLG',
-        '9':	'GLLGLG',
+        '0':    'GGGLLL',
+        '1':    'GGLGLL',
+        '2':    'GGLLGL',
+        '3':    'GGLLLG',
+        '4':    'GLGGLL',
+        '5':    'GLLGGL',
+        '6':    'GLLLGG',
+        '7':    'GLGLGL',
+        '8':    'GLGLLG',
+        '9':    'GLLGLG',
         }
     CODE_2OF5_TABLE = {
-        '0':	'nnWWn',
-        '1':	'WnnnW',
-        '2':	'nWnnW',
-        '3':	'WWnnn',
-        '4':	'nnWnW',
-        '5':	'WnWnn',
-        '6':	'nWWnn',
-        '7':	'nnnWW',
-        '8':	'WnnWn',
-        '9':	'nWnWn',
+        '0':    'nnWWn',
+        '1':    'WnnnW',
+        '2':    'nWnnW',
+        '3':    'WWnnn',
+        '4':    'nnWnW',
+        '5':    'WnWnn',
+        '6':    'nWWnn',
+        '7':    'nnnWW',
+        '8':    'WnnWn',
+        '9':    'nWnWn',
         }
     def drawbars( self, code, x, barlength, barwidth ):
         '''
@@ -295,8 +305,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
             barwidth = self.BARWIDTH
         barwidth =  int (int (barwidth) * int (self.barwidthmodify) / 100)
         normalbarlength =  int (int (barlength) * int (self.barlengthmodify) / 100)
-        longbarlength = int ( (barlength + self.LONGBAREXTRALENGTH) * int (self.barlengthmodify) / 100 ) 	
-        import util.draw
+        longbarlength = int ( (barlength + self.LONGBAREXTRALENGTH) * int (self.barlengthmodify) / 100 )     
         doc = self.getcomponent()
         page = self.getcontroller().CurrentPage
         group = self.ctx.ServiceManager.createInstance( 'com.sun.star.drawing.ShapeCollection' ) 
@@ -310,16 +319,16 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
             bars.extend( self.drawbars( binary, x, barlength , barwidth ) )
             w = barwidth * len( binary )
             if len( meta ) == 1:
-                shape = util.draw.createShape( doc, page, 'Text' )
+                shape = draw.createShape( doc, page, 'Text' )
                 shape.String = meta
                 shape.TextAutoGrowWidth = True
                 shape.TextAutoGrowHeight = True
                 shape.CharHeight = int (20 * int (self.barwidthmodify) / 100)
                 shape.TextHorizontalAdjust = com_sun_star_drawing_TextHorizontalAdjust_CENTER
-                util.draw.setpos( shape, x-200, normalbarlength, w , shape.Size.Height )
+                draw.setpos( shape, x-200, normalbarlength, w , shape.Size.Height )
                 group.add( shape )
             x += w
-        shape = util.draw.createPolygon( doc, page, bars, color = util.draw.RGB( 0, 0, 0 ) )
+        shape = draw.createPolygon( doc, page, bars, color = draw.RGB( 0, 0, 0 ) )
         shape.LineStyle = 0
         group.add( shape )
         return page.group( group )
@@ -327,7 +336,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         if add_checksum:
             value += self.checksum_UPCA( value )
         code = []
-        code.append( ('000000', value[0]) )	# the first digit goes into the quiet zone
+        code.append( ('000000', value[0]) )    # the first digit goes into the quiet zone
         code.append( ('101', 'long') )
         code.append( (self.UPC_TABLE[value[0]], 'long') )
         for digit in value[1:6]:
@@ -337,7 +346,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
             code.append( (self.UPC_REVERSED_TABLE[digit], digit) )
         code.append( (self.UPC_REVERSED_TABLE[value[-1]], 'long') )
         code.append( ('101', 'long') )
-        code.append( ('000000', value[-1]) )	# the last digit goes into the quiet zone
+        code.append( ('000000', value[-1]) )    # the last digit goes into the quiet zone
         return self.drawcode( code )
     def draw_UPCE( self, value, add_checksum ):
         def UPCEtoA( value ):
@@ -444,13 +453,12 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
                     code.append( ('0', 'short') )
         code.append( ('11101', 'short' ) )
         barcode = self.drawcode( code )
-        return self.add_text_above( barcode, value, 5500 ) 	# place text under bars
+        return self.add_text_above( barcode, value, 5500 )     # place text under bars
     def draw_CODE128( self, value, add_checksum ):
-        import code128
         encoded = code128.encode( value )
         code = [(code128.encode( value ), 'short')]
         barcode = self.drawcode( code, barwidth = 60 )
-        return self.add_text_above( barcode, value, offset = 5500 )	# place text under bars
+        return self.add_text_above( barcode, value, offset = 5500 )    # place text under bars
 
     def separate_ISBN( self, code ):
         if '0' <= code[0] <= '7':
@@ -471,7 +479,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         else:
             assert False, 'unless there are letters in the code this is not reachable'
 
-        for l in file( self.path + '/ranges.js' ):		# the file for publisher ranges comes from http://www.isbn-international.org/converter/ranges.js
+        for l in file( self.path + '/ranges.js' ):        # the file for publisher ranges comes from http://www.isbn-international.org/converter/ranges.js
             if l.startswith( 'gi.area%s.pubrange'%group ):
                 ranges = l.split( '"' )[1]
                 for r in ranges.split( ';' ):
@@ -484,19 +492,18 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         return '-'.join( (group, publisher, title) )
 
     def add_text_above( self, code, text, offset = 0 ):
-        import util.draw
         offset = int (offset / 4 + int (offset/2) * int (self.barlengthmodify) / 100)
         doc = self.getcomponent()
         page = self.getcontroller().CurrentPage
         group = self.ctx.ServiceManager.createInstance( 'com.sun.star.drawing.ShapeCollection' ) 
         group.add( code )
-        shape = util.draw.createShape( doc, page, 'Text' )
+        shape = draw.createShape( doc, page, 'Text' )
         shape.String = text
         shape.TextAutoGrowWidth = True
         shape.TextAutoGrowHeight = True
         shape.CharHeight = int (20 * int (self.barwidthmodify) / 100)
         shape.TextHorizontalAdjust = com_sun_star_drawing_TextHorizontalAdjust_CENTER
-        util.draw.setpos( shape, (code.Size.Width - shape.Size.Width) / 2, 0 - 1000 + offset )
+        draw.setpos( shape, (code.Size.Width - shape.Size.Width) / 2, 0 - 1000 + offset )
         group.add( shape )
         return page.group( group )
 
@@ -571,7 +578,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         self.updateOutputInCreatorDialog()
         dlg.execute()
     def updateOutputInCreatorDialog( self ):
-        import sys
+        
         if sys.platform in DEBUGFILEPLATFORMS:
             self.dlg.OutputField.Model.Text = file( debugfile, 'r' ).read()
             selection = uno.createUnoStruct( 'com.sun.star.awt.Selection' )
@@ -580,13 +587,12 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
     def on_action_ExecuteCode( self ):
         try:
             code = self.dlg.CodeField.Model.Text
-            exec code
+            exec(code)
         except:
             debugexception()
         self.updateOutputInCreatorDialog()
     def on_action_SaveDialogs( self ):
         try:
-            import os
             dialogs = 'EOECBarcodeDialogs'
             installed = os.path.join( self.path, dialogs )
             development = os.path.join( HOME, dialogs )
@@ -634,4 +640,8 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         except:
             debugexception()
 
-init( Barcode )
+g_ImplementationHelper = unohelper.ImplementationHelper()
+g_ImplementationHelper.addImplementation(
+    Barcode,
+    "org.openoffice.Barcode",
+    ("com.sun.star.task.JobExecutor","com.sun.star.task.Job"))

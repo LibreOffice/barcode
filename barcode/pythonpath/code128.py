@@ -445,7 +445,7 @@ encode_C = {}
 decode_A = {}
 decode_B = {}
 decode_C = {}
-for a, b, c, num in zip( code_A, code_B, code_C, range( len( code_A ) ) ):
+for a, b, c, num in zip( code_A, code_B, code_C, list(range( len( code_A ))) ):
     encode_A[a] = num
     encode_B[b] = num
     encode_C[c] = num
@@ -479,9 +479,9 @@ def bestcode( input ):
         bestlast = getbest( i )
         # if something can be encoded at the current position set the corresponding cell
         # possible contenders are:
-        #	- the contents of the cell (best encoding for that situation so far)
-        #	- the best encoding until the current position in our mode + the encoded symbol
-        #	- the best encoding until the current position in some other mode + the mode switch + the encoded symbol
+        #    - the contents of the cell (best encoding for that situation so far)
+        #    - the best encoding until the current position in our mode + the encoded symbol
+        #    - the best encoding until the current position in some other mode + the mode switch + the encoded symbol
         for x in code_A:
             if rest.startswith( x ):
                 best_A[i + len( x )] = shortest( best_A[i + len( x )], best_A[i] + (encode_A[x],), bestlast + (encode_B['[Code A]'], encode_A[x]) )
@@ -500,8 +500,8 @@ def bestcode( input ):
         if bestnext is None: continue
         # if the next character can not be encoded in a mode we still have to fill that cell
         # possible contenders are:
-        #	- the contents of the cell (best encoding for the situation so far)
-        #	- best cell in this column (best encoding in some other mode) + the cost of switching to our mode
+        #    - the contents of the cell (best encoding for the situation so far)
+        #    - best cell in this column (best encoding in some other mode) + the cost of switching to our mode
         best_A[i + 1] = shortest( best_A[i + 1], bestnext + (encode_B['[Code A]'],) )
         best_B[i + 1] = shortest( best_B[i + 1], bestnext + (encode_C['[Code B]'],) )
         best_C[i + 1] = shortest( best_C[i + 1], bestnext + (encode_A['[Code C]'],) )
@@ -562,9 +562,9 @@ def encode( input ):
 if __name__ == '__main__':
     import sys
     encoded = bestcode( sys.argv[1] )
-    print sys.argv[1]
-    print 'encoded:', encoded
-    print 'decoded:', [x for x in decode( encoded, verbose = True )]
-    print 'checksum:', checksum( encoded )
-    print 'binary:', encode( sys.argv[1] )
+    print(sys.argv[1])
+    print('encoded:', encoded)
+    print('decoded:', [x for x in decode( encoded, verbose = True )])
+    print('checksum:', checksum( encoded ))
+    print('binary:', encode( sys.argv[1] ))
 

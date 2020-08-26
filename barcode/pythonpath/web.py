@@ -42,8 +42,8 @@ class WebCache( object ):
         return self.data[url]
 
 def loadpage( url ):
-    import urllib2
-    opener = urllib2.build_opener()
+    import urllib.request, urllib.error, urllib.parse
+    opener = urllib.request.build_opener()
     opener.addheaders = [('User-agent', 'Mozilla/5.0 (OpenOffice.org extension "Barcode" created with EuroOffice Extension Creator)')]
     html = opener.open( url ).read()
     return html
@@ -59,6 +59,6 @@ def flatten( x ):
     if hasattr( x, 'contents' ):
         return ' '.join( [flatten( y ) for y in x.contents] )
     else:
-        return unicode( x ).strip()
+        return str( x ).strip()
 
 
