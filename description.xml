@@ -1,38 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description xmlns="http://openoffice.org/extensions/description/2006"
-	xmlns:xlink="http://www.w3.org/1999/xlink">
-
-	<identifier value="org.libreoffice.barcode"></identifier>
-
-	<version value="1.3.5.0"></version>
-
+<description xmlns="http://openoffice.org/extensions/description/2006" xmlns:d="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<version value="1.3.5.0"/>
+	<identifier value="org.libreoffice.barcode"/>
 	<registration>
-		<simple-license  accept-by="admin" default-license-id="en" suppress-on-update="true">
-			<license-text xlink:href="resources/license_en.txt" lang="en" license-id="en" />
-			<license-text xlink:href="resources/license_sr.txt" lang="sr" />
-			<license-text xlink:href="resources/license_sh.txt" lang="sh" />
-			<license-text xlink:href="resources/license_de.txt" lang="de" />
-			<license-text xlink:href="resources/license_nl.txt" lang="nl" />
-			<license-text xlink:href="resources/license_ru.txt" lang="ru" />
+		<simple-license suppress-on-update="true" accept-by="admin">
+			<license-text lang="de" xlink:href="resources/license_de.txt"/>
+			<license-text lang="en" xlink:href="resources/license_en.txt"/>
+			<license-text lang="ru" xlink:href="resources/license_ru.txt"/>
+			<license-text lang="sh" xlink:href="resources/license_sh.txt"/>
+			<license-text lang="ja" xlink:href="resources/license_ja.txt"/>
+			<license-text lang="sr" xlink:href="resources/license_sr.txt"/>
+			<license-text lang="nl" xlink:href="resources/license_nl.txt"/>
+			<license-text lang="hu" xlink:href="resources/license_hu.txt"/>
 		</simple-license>
 	</registration>
-
-	<display-name>
-		<name lang="en">Barcode</name>
-		<name lang="hu">Vonalkód</name>
-		<name lang="sr">Баркод</name>
-		<name lang="sh">Barkod</name>
-		<name lang="de">Strichcode</name>
-		<name lang="ru">Штрихкод</name>
-		<name lang="ja">Barcode</name>
-	</display-name>
-
 	<publisher>
-		<name xlink:href="https://launchpad.net/eoec/" lang="en">EOEC</name>
+		<name lang="en" xlink:href="https://www.documentfoundation.org/">The Document Foundation</name>
 	</publisher>
-
+	<display-name>
+		<name lang="de">Strichcode</name>
+		<name lang="en">Barcode</name>
+		<name lang="ru">Штрихкод</name>
+		<name lang="sh">Barkod</name>
+		<name lang="ja">Barcode</name>
+		<name lang="sr">Баркод</name>
+		<name lang="hu">Vonalkód</name>
+		<name lang="nl"></name>
+	</display-name>
 	<icon>
-		<default xlink:href="extensionicon.png" />
+		<default xlink:href="extensionicon.png"/>
 	</icon>
-
+	<extension-description>
+		<src lang="de" xlink:href="resources/description_de.txt"/>
+		<src lang="en" xlink:href="resources/description_en.txt"/>
+		<src lang="ru" xlink:href="resources/description_ru.txt"/>
+		<src lang="sh" xlink:href="resources/description_sh.txt"/>
+		<src lang="ja" xlink:href="resources/description_ja.txt"/>
+		<src lang="sr" xlink:href="resources/description_sr.txt"/>
+		<src lang="hu" xlink:href="resources/description_hu.txt"/>
+		<src lang="nl" xlink:href="resources/description_nl.txt"/>
+	</extension-description>
 </description>
