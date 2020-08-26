@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
-<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="Barcode" dlg:left="101" dlg:top="81" dlg:width="159" dlg:height="285" dlg:help-text="&amp;643.Barcode.HelpText" dlg:help-url="org.openoffice.barcode:About" dlg:closeable="true" dlg:moveable="true" dlg:title="&amp;644.Barcode.Title">
+<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="Barcode" dlg:left="101" dlg:top="81" dlg:width="159" dlg:height="285" dlg:help-text="&amp;643.Barcode.HelpText" dlg:help-url="org.libreoffice.barcode:About" dlg:closeable="true" dlg:moveable="true" dlg:title="&amp;644.Barcode.Title">
  <dlg:bulletinboard>
   <dlg:textfield dlg:id="CodeField" dlg:tab-index="0" dlg:left="2" dlg:top="252" dlg:width="154" dlg:height="12" dlg:help-text="&amp;651.Barcode.CodeField.HelpText" dlg:value="&amp;652.Barcode.CodeField.Text"/>
   <dlg:titledbox dlg:id="BarcodeType" dlg:tab-index="4" dlg:left="1" dlg:top="1" dlg:width="158" dlg:height="126" dlg:help-text="&amp;659.Barcode.BarcodeType.HelpText">

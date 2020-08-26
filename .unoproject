@@ -1,6 +1,6 @@
 #UNO project configuration file
 #Tue Aug 25 12:13:58 CEST 2020
-project.prefix=org.openoffice
+project.prefix=org.libreoffice
 project.language=Python
 project.ooo=LibreOfficeDev 7.1
 project.idl=/idl

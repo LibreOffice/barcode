@@ -9,7 +9,7 @@
 	<node oor:name="Jobs">
 		<node oor:name="Barcode" oor:op="replace">
 			<prop oor:name="Service" oor:type="xs:string">
-				<value>org.openoffice.Barcode</value>
+				<value>org.libreoffice.Barcode</value>
 			</prop>
 		</node>
 	</node>

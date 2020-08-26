@@ -164,7 +164,7 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         # store the component context for later use
         try:
             self.ctx = args[0]
-            self.config = self.getconfig( 'org.openoffice.%sSettings/ConfigNode'%self.__class__.__name__, update = True )
+            self.config = self.getconfig( 'org.libreoffice.%sSettings/ConfigNode'%self.__class__.__name__, update = True )
             self.initpath()
             self.initlanguage()
         except:
@@ -183,7 +183,7 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
     # XServiceInfo
     def getImplementationName( self ):
         try:
-            return 'org.openoffice.' + self.__class__.__name__
+            return 'org.libreoffice.' + self.__class__.__name__
         except:
             debugexception()
     def supportsService( self, s ):
@@ -313,7 +313,7 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         dumpMenu( settings )
 
     def commandURL( self, command ):
-        return 'service:org.openoffice.%s?%s'%(self.__class__.__name__, command)
+        return 'service:org.libreoffice.%s?%s'%(self.__class__.__name__, command)
 
     def createdialog( self, dialogname ):
         psm = self.ctx.ServiceManager
@@ -478,7 +478,7 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
 
     def getServiceName( cls ):
         try:
-            return 'org.openoffice.' + cls.__name__
+            return 'org.libreoffice.' + cls.__name__
         except Exception:
             debugexception()
     getServiceName = classmethod( getServiceName )

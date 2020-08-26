@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <tree_view>
   <help_section application="eoec" id="eoec" title="Расширения EuroOffice">
     <node id="barcode" title="Штрихкод">
-      <topic id="eoec/org.openoffice.barcode/page1.xhp">Как использовать Штрихкод</topic>
+      <topic id="eoec/org.libreoffice.barcode/page1.xhp">Как использовать Штрихкод</topic>
     </node>
   </help_section>
 </tree_view>

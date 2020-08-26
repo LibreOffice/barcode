@@ -4,7 +4,7 @@
 	xmlns:oor="http://openoffice.org/2001/registry"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	oor:name="BarcodeSettings"
-	oor:package="org.openoffice">
+	oor:package="org.libreoffice">
 
 	<node oor:name="ConfigNode">
 		<prop oor:name="Origin" oor:type="xs:string">

@@ -2,7 +2,7 @@
 
 <oor:component-schema
 	oor:name="BarcodeSettings"
-	oor:package="org.openoffice"
+	oor:package="org.libreoffice"
 	xml:lang="en-US"
 	xmlns:oor="http://openoffice.org/2001/registry"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -12,7 +12,7 @@
 		<group oor:name="ConfigNode">
 			<prop oor:name="Origin" oor:type="xs:string"/>
 			<prop oor:name="FirstRun" oor:type="xs:boolean"/>
-			
+
 			<prop oor:name="LastBarcodeType" oor:type="xs:string"/>
 			<prop oor:name="LastChecksum" oor:type="xs:boolean"/>
 			<prop oor:name="HeightModify" oor:type="xs:string"/>

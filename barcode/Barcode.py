@@ -23,7 +23,7 @@ SUPPORTED_LANGUAGES = ('en', 'da', 'de', 'fr', 'hu', 'ja', 'nl', 'sh', 'sr', 'zh
 com_sun_star_awt_SystemPointer_ARROW = uno.getConstantByName( 'com.sun.star.awt.SystemPointer.ARROW' )
 com_sun_star_awt_SystemPointer_REFHAND = uno.getConstantByName( 'com.sun.star.awt.SystemPointer.REFHAND' )
 com_sun_star_drawing_TextHorizontalAdjust_CENTER = 1
- 
+
 class Barcode( ComponentBase, XMouseListener, XActionListener ):
     SUPPORTED_LANGUAGES = SUPPORTED_LANGUAGES
     def firstrun( self ):
@@ -49,7 +49,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         dlg.WithChecksum.State = self.config.LastChecksum
         dlg.HeightModify.Text = self.config.HeightModify
         dlg.WidthModify.Text = self.config.WidthModify
-        
+
         while True:
             ok = dlg.execute()
             if not ok:
@@ -305,10 +305,10 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
             barwidth = self.BARWIDTH
         barwidth =  int (int (barwidth) * int (self.barwidthmodify) / 100)
         normalbarlength =  int (int (barlength) * int (self.barlengthmodify) / 100)
-        longbarlength = int ( (barlength + self.LONGBAREXTRALENGTH) * int (self.barlengthmodify) / 100 )     
+        longbarlength = int ( (barlength + self.LONGBAREXTRALENGTH) * int (self.barlengthmodify) / 100 )
         doc = self.getcomponent()
         page = self.getcontroller().CurrentPage
-        group = self.ctx.ServiceManager.createInstance( 'com.sun.star.drawing.ShapeCollection' ) 
+        group = self.ctx.ServiceManager.createInstance( 'com.sun.star.drawing.ShapeCollection' )
         bars = []
         x = 0
         for binary, meta in code:
@@ -495,7 +495,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         offset = int (offset / 4 + int (offset/2) * int (self.barlengthmodify) / 100)
         doc = self.getcomponent()
         page = self.getcontroller().CurrentPage
-        group = self.ctx.ServiceManager.createInstance( 'com.sun.star.drawing.ShapeCollection' ) 
+        group = self.ctx.ServiceManager.createInstance( 'com.sun.star.drawing.ShapeCollection' )
         group.add( code )
         shape = draw.createShape( doc, page, 'Text' )
         shape.String = text
@@ -510,7 +510,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
     def checksum_UPCA( self, code ):
         '''
         From Wikipedia:
-        
+
             1. Add the digits in the odd-numbered positions (first, third, fifth, etc.) together and multiply by three.
             2. Add the digits in the even-numbered positions (second, fourth, sixth, etc.) to the result.
             3. Find the result modulo 10 (i.e. the remainder when the result is divided by 10).
@@ -541,7 +541,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         and must be such that the sum of all the ten digits,
         each multiplied by the integer weight, descending from 10 to 1,
         is a multiple of the number 11.
-        
+
         ISBN-13 uses the EAN-13 checksum.
         '''
         sum = 0
@@ -578,7 +578,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         self.updateOutputInCreatorDialog()
         dlg.execute()
     def updateOutputInCreatorDialog( self ):
-        
+
         if sys.platform in DEBUGFILEPLATFORMS:
             self.dlg.OutputField.Model.Text = file( debugfile, 'r' ).read()
             selection = uno.createUnoStruct( 'com.sun.star.awt.Selection' )
@@ -643,5 +643,5 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation(
     Barcode,
-    "org.openoffice.Barcode",
+    "org.libreoffice.Barcode",
     ("com.sun.star.task.JobExecutor","com.sun.star.task.Job"))

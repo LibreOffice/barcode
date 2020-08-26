@@ -4,7 +4,7 @@
 <meta>
 <topic id="barcode" indexer="include" status="PUBLISH">
 <title id="title">Barcode</title>
-<filename>/org.openoffice.barcode/page1.xhp</filename>
+<filename>/org.libreoffice.barcode/page1.xhp</filename>
 </topic>
 </meta>
 <body>
@@ -13,7 +13,7 @@
 <bookmark_value>Barcode</bookmark_value>
 </bookmark>
 
-<bookmark xml-lang="ja-JP" branch="hid/org.openoffice.barcode:About" id="bm2" localize="false" />
+<bookmark xml-lang="ja-JP" branch="hid/org.libreoffice.barcode:About" id="bm2" localize="false" />
 
 <paragraph role="heading" level="1">Barcode
 </paragraph>
@@ -40,4 +40,4 @@ OpenOffice.org Draw の挿入メニューの一番下に「バーコード」の
 
 
 </body>
-</helpdocument> 
+</helpdocument>
