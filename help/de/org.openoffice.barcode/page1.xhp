@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<helpdocument version="1.1">
+<meta>
+<topic id="barcode" indexer="include" status="PUBLISH">
+<title id="title">Barcode</title>
+<filename>/org.openoffice.barcode/page1.xhp</filename>
+</topic>
+</meta>
+<body>
+
+<bookmark xml-lang="en-US" branch="index" id="bm1">
+<bookmark_value>Barcode</bookmark_value>
+</bookmark>
+
+<bookmark xml-lang="en-US" branch="hid/org.openoffice.barcode:About" id="bm2" localize="false" />
+
+<paragraph role="heading" level="1">Barcode
+</paragraph>
+<paragraph role="paragraph">
+
+Barcode ist eine "EuroOffice Extension Creator" Beispielerweiterung für <item type="productname">%PRODUCTNAME</item> Draw.
+Sie fügt einen neuen "Strichcode einfügen" Menüeintrag am Ende des Einfügen-Menüs in OpenOffice.org Draw ein.
+Dieser Menüeintrag öffnet den Barcode Dialog.
+Geben Sie eine Nummer ein und wählen Sie den zu erstellenden Strichcode-Typ. Ein Strichcode wird generiert und in das Dokument eingefügt.
+
+</paragraph>
+<paragraph role="paragraph">
+
+Berücksichtigen Sie, dass dies eine sehr frühe Version dieses Open-Source Produktes ist.
+Die Entwickler haben sich bemüht sicherzustellen, dass die Strichcodes gemäß den Spezifizierungen erzeugt werden, 
+aber das Produkt konnte bis jetzt noch nicht ausreichend getested werden um das zu überprüfen.
+Es wird empfohlen ein Strichcode Lesegerät zu verwenden, um die generierten Strichcodes zu überprüfen, bevor sie auf die Verpackungen von Millionen von Produkten gedruckt werden.
+
+</paragraph>
+<paragraph role="paragraph">
+
+Um Updates herunterzuladen oder die Entwickler zu kontaktieren, besuchen sie die <link href="http://extensions.services.openoffice.org/project/barcode">Website der Erweiterung</link>.
+</paragraph>
+
+
+</body>
+</helpdocument>

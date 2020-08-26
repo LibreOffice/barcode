@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.dialog-library"
+		manifest:full-path="EOECBarcodeDialogs/"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-schema"
+		manifest:full-path="Barcode.xcs"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-data"
+		manifest:full-path="Barcode.xcu"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-data"
+		manifest:full-path="Jobs.xcu"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-data"
+		manifest:full-path="Addons.xcu"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.help"
+		manifest:full-path="help"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description;locale=en"
+		manifest:full-path="description_en.txt"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description;locale=hu"
+		manifest:full-path="description_hu.txt"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description;locale=sr"
+		manifest:full-path="description_sr.txt"/>
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description;locale=sh"
+		manifest:full-path="description_sh.txt"/>
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.uno-components"
+        manifest:full-path="passive_python.component"/>
+    
+</manifest:manifest>

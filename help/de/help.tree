@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<tree_view>
+  <help_section application="eoec" id="eoec" title="EOEC's Extensions">
+    <node id="barcode" title="Barcode">
+      <topic id="eoec/org.openoffice.barcode/page1.xhp">Die Verwendung von Barcode</topic>
+    </node>
+  </help_section>
+</tree_view>

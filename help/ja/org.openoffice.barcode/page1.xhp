@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<helpdocument version="1.1">
+<meta>
+<topic id="barcode" indexer="include" status="PUBLISH">
+<title id="title">Barcode</title>
+<filename>/org.openoffice.barcode/page1.xhp</filename>
+</topic>
+</meta>
+<body>
+
+<bookmark xml-lang="ja-JP" branch="index" id="bm1">
+<bookmark_value>Barcode</bookmark_value>
+</bookmark>
+
+<bookmark xml-lang="ja-JP" branch="hid/org.openoffice.barcode:About" id="bm2" localize="false" />
+
+<paragraph role="heading" level="1">Barcode
+</paragraph>
+<paragraph role="paragraph">
+
+Barcode は EuroOffice Extension Creator による <item type="productname">%PRODUCTNAME</item> Draw 用のシンプルな拡張機能です。
+OpenOffice.org Draw の挿入メニューの一番下に「バーコード」の挿入メニューアイテムを追加します。
+「バーコード」の挿入メニューアイテムを選択するとバーコードダイアログが開きます。
+値を入力しバーコードの形式を選択すると、バーコードが生成されドキュメントに挿入されます。
+
+</paragraph>
+<paragraph role="paragraph">
+
+これはオープンソース・プロダクトの早期バージョンであることに注意してください。
+開発者は、バーコードが仕様に則って生成されるよう最善の努力をしていますが、それを検証するための十分なテストはまだ行なわれていません。
+多くの商品のパッケージにバーコードを印刷する前に、あなた自身の手でバーコードリーダを用いて生成されたバーコードを検証することをおすすめします。
+
+</paragraph>
+<paragraph role="paragraph">
+
+更新のダウンロード、開発者への問い合わせは <link href="http://extensions.services.openoffice.org/project/barcode">この拡張機能のページ</link> を参照してください。
+
+</paragraph>
+
+
+</body>
+</helpdocument> 

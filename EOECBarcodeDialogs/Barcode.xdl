@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
+<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="Barcode" dlg:left="101" dlg:top="81" dlg:width="159" dlg:height="285" dlg:help-text="&amp;643.Barcode.HelpText" dlg:help-url="org.openoffice.barcode:About" dlg:closeable="true" dlg:moveable="true" dlg:title="&amp;644.Barcode.Title">
+ <dlg:bulletinboard>
+  <dlg:textfield dlg:id="CodeField" dlg:tab-index="0" dlg:left="2" dlg:top="252" dlg:width="154" dlg:height="12" dlg:help-text="&amp;651.Barcode.CodeField.HelpText" dlg:value="&amp;652.Barcode.CodeField.Text"/>
+  <dlg:titledbox dlg:id="BarcodeType" dlg:tab-index="4" dlg:left="1" dlg:top="1" dlg:width="158" dlg:height="126" dlg:help-text="&amp;659.Barcode.BarcodeType.HelpText">
+   <dlg:title dlg:value="&amp;660.Barcode.BarcodeType.Label"/>
+  </dlg:titledbox>
+  <dlg:radiogroup>
+   <dlg:radio dlg:id="EAN13" dlg:tab-index="5" dlg:left="4" dlg:top="10" dlg:width="130" dlg:height="8" dlg:help-text="&amp;663.Barcode.EAN13.HelpText" dlg:value="&amp;664.Barcode.EAN13.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="ISBN13" dlg:tab-index="6" dlg:left="4" dlg:top="20" dlg:width="130" dlg:height="8" dlg:help-text="&amp;731.Barcode.ISBN13.HelpText" dlg:value="&amp;732.Barcode.ISBN13.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="Bookland" dlg:tab-index="7" dlg:left="4" dlg:top="30" dlg:width="130" dlg:height="8" dlg:help-text="&amp;675.Barcode.Bookland.HelpText" dlg:value="&amp;676.Barcode.Bookland.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="UPCA" dlg:tab-index="8" dlg:left="4" dlg:top="40" dlg:width="130" dlg:height="8" dlg:help-text="&amp;685.Barcode.UPCA.HelpText" dlg:value="&amp;686.Barcode.UPCA.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="JAN" dlg:tab-index="9" dlg:left="4" dlg:top="50" dlg:width="130" dlg:height="8" dlg:help-text="&amp;699.Barcode.JAN.HelpText" dlg:value="&amp;700.Barcode.JAN.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="EAN8" dlg:tab-index="10" dlg:left="4" dlg:top="60" dlg:width="130" dlg:height="8" dlg:help-text="&amp;801.Barcode.EAN8.HelpText" dlg:value="&amp;802.Barcode.EAN8.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="UPCE" dlg:tab-index="11" dlg:left="4" dlg:top="70" dlg:width="130" dlg:height="8" dlg:help-text="&amp;803.Barcode.UPCE.HelpText" dlg:value="&amp;804.Barcode.UPCE.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="STANDARD2OF5" dlg:tab-index="12" dlg:left="4" dlg:top="80" dlg:width="130" dlg:height="8" dlg:help-text="&amp;813.Barcode.STANDARD2OF5.HelpText" dlg:value="&amp;814.Barcode.STANDARD2OF5.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="INTERLEAVED2OF5" dlg:tab-index="13" dlg:left="4" dlg:top="90" dlg:width="130" dlg:height="8" dlg:help-text="&amp;817.Barcode.INTERLEAVED2OF5.HelpText" dlg:value="&amp;818.Barcode.INTERLEAVED2OF5.Label" dlg:group-name="BarcodeType"/>
+   <dlg:radio dlg:id="CODE128" dlg:tab-index="14" dlg:left="4" dlg:top="100" dlg:width="130" dlg:height="8" dlg:help-text="&amp;819.Barcode.CODE128.HelpText" dlg:value="&amp;819.Barcode.CODE128.Label" dlg:group-name="BarcodeType"/>
+  </dlg:radiogroup>
+  <dlg:text dlg:id="BarcodeValue" dlg:tab-index="15" dlg:left="2" dlg:top="244" dlg:width="66" dlg:height="8" dlg:help-text="&amp;693.Barcode.BarcodeValue.HelpText" dlg:value="&amp;694.Barcode.BarcodeValue.Label"/>
+  <dlg:checkbox dlg:id="WithChecksum" dlg:tab-index="16" dlg:left="4" dlg:top="115" dlg:width="152" dlg:height="8" dlg:help-text="&amp;793.Barcode.WithChecksum.HelpText" dlg:value="&amp;794.Barcode.WithChecksum.Label" dlg:checked="false"/>
+  <dlg:fixedline dlg:id="FixedLine1" dlg:tab-index="17" dlg:left="5" dlg:top="110" dlg:width="149" dlg:height="4" dlg:help-text="&amp;795.Barcode.FixedLine1.HelpText" dlg:value="&amp;796.Barcode.FixedLine1.Label"/>
+  <dlg:button dlg:id="OK" dlg:tab-index="1" dlg:left="54" dlg:top="268" dlg:width="50" dlg:height="14" dlg:help-text="&amp;645.Barcode.OK.HelpText" dlg:default="true" dlg:value="&amp;646.Barcode.OK.Label" dlg:button-type="ok"/>
+  <dlg:button dlg:id="Cancel" dlg:tab-index="2" dlg:left="108" dlg:top="268" dlg:width="50" dlg:height="14" dlg:help-text="&amp;647.Barcode.Cancel.HelpText" dlg:value="&amp;648.Barcode.Cancel.Label" dlg:button-type="cancel"/>
+  <dlg:button dlg:id="Help" dlg:tab-index="3" dlg:left="1" dlg:top="268" dlg:width="50" dlg:height="14" dlg:help-text="&amp;655.Barcode.Help.HelpText" dlg:default="true" dlg:value="&amp;656.Barcode.Help.Label" dlg:button-type="help"/>
+  <dlg:titledbox dlg:id="SizeFrame" dlg:tab-index="18" dlg:left="1" dlg:top="128" dlg:width="158" dlg:height="40" dlg:help-text="&amp;822.Barcode.SizeFrame.HelpText">
+   <dlg:title dlg:value="&amp;823.Barcode.SizeFrame.Label"/>
+  </dlg:titledbox>
+  <dlg:text dlg:id="Width" dlg:tab-index="20" dlg:left="32" dlg:top="140" dlg:width="124" dlg:height="8" dlg:help-text="&amp;837.Barcode.Width.HelpText" dlg:value="&amp;838.Barcode.Width.Label"/>
+  <dlg:text dlg:id="Height" dlg:tab-index="22" dlg:left="32" dlg:top="154" dlg:width="124" dlg:height="8" dlg:help-text="&amp;852.Barcode.Height.HelpText" dlg:value="&amp;853.Barcode.Height.Label"/>
+  <dlg:combobox dlg:id="WidthModify" dlg:tab-index="19" dlg:left="4" dlg:top="139" dlg:width="26" dlg:height="12" dlg:help-text="&amp;882.Barcode.WidthModify.HelpText" dlg:value="&amp;890.Barcode.WidthModify.Text" dlg:spin="true" dlg:maxlength="4" dlg:linecount="8">
+   <dlg:menupopup>
+    <dlg:menuitem dlg:value="&amp;883.WidthModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;884.WidthModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;885.WidthModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;886.WidthModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;887.WidthModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;888.WidthModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;889.WidthModify.StringItemList"/>
+   </dlg:menupopup>
+  </dlg:combobox>
+  <dlg:combobox dlg:id="HeightModify" dlg:tab-index="21" dlg:left="4" dlg:top="153" dlg:width="26" dlg:height="12" dlg:help-text="&amp;891.Barcode.HeightModify.HelpText" dlg:value="&amp;902.Barcode.HeightModify.Text" dlg:spin="true" dlg:maxlength="4" dlg:linecount="8">
+   <dlg:menupopup>
+    <dlg:menuitem dlg:value="&amp;892.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;893.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;894.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;895.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;896.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;897.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;898.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;899.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;900.HeightModify.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;901.HeightModify.StringItemList"/>
+   </dlg:menupopup>
+  </dlg:combobox>
+  <!-- Remove uninplemented UI elements
+
+  <dlg:titledbox dlg:id="FrameControl1" dlg:tab-index="23" dlg:left="1" dlg:top="168" dlg:width="158" dlg:height="74" dlg:help-text="&amp;903.Barcode.FrameControl1.HelpText">
+   <dlg:title dlg:value="&amp;904.Barcode.FrameControl1.Label"/>
+  </dlg:titledbox>
+  <dlg:radiogroup>
+   <dlg:radio dlg:id="MassDisabled" dlg:tab-index="24" dlg:left="4" dlg:top="178" dlg:width="130" dlg:height="8" dlg:help-text="&amp;907.Barcode.MassDisabled.HelpText" dlg:value="&amp;908.Barcode.MassDisabled.Label" dlg:group-name="MassCreationofBarcodes"/>
+   <dlg:radio dlg:id="MultipleText" dlg:tab-index="25" dlg:left="4" dlg:top="188" dlg:width="130" dlg:height="8" dlg:help-text="&amp;913.Barcode.MultipleText.HelpText" dlg:value="&amp;914.Barcode.MultipleText.Label" dlg:group-name="MassCreationofBarcodes"/>
+   <dlg:radio dlg:id="FromFile" dlg:tab-index="26" dlg:left="4" dlg:top="198" dlg:width="130" dlg:height="8" dlg:help-text="&amp;917.Barcode.FromFile.HelpText" dlg:value="&amp;918.Barcode.FromFile.Label" dlg:group-name="MassCreationofBarcodes"/>
+  </dlg:radiogroup>
+  <dlg:filecontrol dlg:id="FileControl1" dlg:tab-index="27" dlg:left="4" dlg:top="210" dlg:width="152" dlg:height="14" dlg:help-text="&amp;919.Barcode.FileControl1.HelpText"/>
+  <dlg:combobox dlg:id="MultipleSeparator" dlg:tab-index="28" dlg:left="136" dlg:top="186" dlg:width="20" dlg:height="12" dlg:help-text="&amp;927.Barcode.MultipleSeparator.HelpText" dlg:value="&amp;932.Barcode.MultipleSeparator.Text" dlg:spin="true" dlg:maxlength="1">
+   <dlg:menupopup>
+    <dlg:menuitem dlg:value="&amp;928.MultipleSeparator.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;929.MultipleSeparator.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;930.MultipleSeparator.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;931.MultipleSeparator.StringItemList"/>
+   </dlg:menupopup>
+  </dlg:combobox>
+  <dlg:combobox dlg:id="ComboBox1" dlg:tab-index="29" dlg:left="4" dlg:top="226" dlg:width="40" dlg:height="12" dlg:help-text="&amp;933.Barcode.ComboBox1.HelpText" dlg:value="&amp;938.Barcode.ComboBox1.Text" dlg:spin="true" dlg:maxlength="8">
+   <dlg:menupopup>
+    <dlg:menuitem dlg:value="&amp;945.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;946.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;947.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;948.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;949.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;950.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;951.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;952.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;953.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;954.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;955.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;956.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;957.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;958.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;959.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;960.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;961.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;962.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;963.ComboBox1.StringItemList"/>
+    <dlg:menuitem dlg:value="&amp;964.ComboBox1.StringItemList"/>
+   </dlg:menupopup>
+  </dlg:combobox>
+  <dlg:radiogroup>
+   <dlg:radio dlg:id="FileRow" dlg:tab-index="30" dlg:left="52" dlg:top="228" dlg:width="50" dlg:height="8" dlg:help-text="&amp;967.Barcode.FileRow.HelpText" dlg:value="&amp;968.Barcode.FileRow.Label" dlg:group-name="FIleRowColumn"/>
+   <dlg:radio dlg:id="FileColumn" dlg:tab-index="31" dlg:left="105" dlg:top="228" dlg:width="50" dlg:height="8" dlg:help-text="&amp;971.Barcode.FileColumn.HelpText" dlg:value="&amp;972.Barcode.FileColumn.Label" dlg:group-name="FIleRowColumn"/>
+  </dlg:radiogroup>
+  <dlg:text dlg:id="Dot" dlg:tab-index="32" dlg:left="45" dlg:top="228" dlg:width="6" dlg:height="8" dlg:help-text="&amp;979.Barcode.Dot.HelpText" dlg:value="&amp;980.Barcode.Dot.Label"/>
+  -->
+ </dlg:bulletinboard>
+</dlg:window>

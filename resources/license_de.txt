@@ -1,0 +1,26 @@
+﻿
+============= WICHTIGE ANMERKUNGEN =============
+
+Vielen Dank, dass sie sich für Barcode entschieden haben!
+
+Diese Erweiterung wird erst nach dem Neustart der Applikation aktiv. Wenn der Schnellstarter aktiviert ist, dann sollten Sie ihn während des Neustarts ebenfalls schließen.
+
+Diese Beipielerweiterung wurde erstellt mit "EuroOffice Extension Creator" (by MultiRacio Ltd.).
+
+Falls Sie Fragen haben sollten, besuchen sie https://launchpad.net/eoec/
+
+Primäre Mitwirkende an der Entwicklung dieser Erweiterung waren: Daniel Darabos, Kalman Szalai
+
+============= NUTZUNGSBEDINGUNGEN =============
+
+Dieses Programm ist freie Software. 
+Sie können es unter den Bedingungen der GNU General Public License, 
+wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, 
+entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
+
+Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, 
+dass es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, 
+sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. 
+Details finden Sie in der GNU General Public License. 
+
+Der vollständige Text der Lizenz kann unter http://www.gnu.org/licenses/gpl-3.0.txt eingesehen werden.

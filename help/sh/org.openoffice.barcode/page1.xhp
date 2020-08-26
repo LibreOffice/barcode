@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<helpdocument version="1.1">
+<meta>
+<topic id="barcode" indexer="include" status="PUBLISH">
+<title id="title">Barkod</title>
+<filename>/org.openoffice.barcode/page1.xhp</filename>
+</topic>
+</meta>
+<body>
+
+<bookmark xml-lang="sh" branch="index" id="bm1">
+<bookmark_value>Barkod</bookmark_value>
+</bookmark>
+
+<bookmark xml-lang="en-US" branch="hid/org.openoffice.barcode:About" id="bm2" localize="false" />
+
+<paragraph role="heading" level="1">Barkod
+</paragraph>
+<paragraph role="paragraph">
+
+Barkod je primer dodatka kakvi se mogu napraviti u EuroOffice konstruktoru dodataka za <item type="productname">%PRODUCTNAME</item> Crtanje (engl. Draw).
+Umeće novu stavku u meniju „Umetni barkod“ na dno menija „Umetni“ u OpenOffice.org Crtanju.
+Ova stavka otvara barkod prozorče.
+Unesite broj i odaberite vrstu barkoda i dodatak će sastaviti barkod i umetnuti ga u dokument.
+
+</paragraph>
+<paragraph role="paragraph">
+
+Za preuzimanje novih unapređenja ili da kontaktirate programere posetite <link href="http://extensions.services.openoffice.org/project/barcode">veb stranicu dodatka</link>.
+
+</paragraph>
+
+
+</body>
+</helpdocument>

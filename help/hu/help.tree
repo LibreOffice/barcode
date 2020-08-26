@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<tree_view>
+  <help_section application="eoec" id="eoec" title="EOEC kiterjesztések">
+    <node id="barcode" title="Vonalkód">
+      <topic id="eoec/org.openoffice.barcode/page1.xhp">A Vonalkód kiterjesztés használata</topic>
+    </node>
+  </help_section>
+</tree_view>

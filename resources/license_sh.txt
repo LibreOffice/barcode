@@ -1,0 +1,24 @@
+﻿============ VAŽNE NAPOMENE ===========
+
+Hvala vam što ste odabrali dodatak barkod!
+
+Ovaj dodatak će postati aktivan nakon što ponovo pokrenete program. Ako imate pokrenut brzi pokretač (ikonica pored sata) ne zaboravite da i njega zatvorite.
+
+Ovo je primer dodatka kakvi se mogu napraviti uz EuroOffice konstruktor dodataka (koji pravi MultiRacio Ltd.).
+
+Za pitanja i komentare posetite https://launchpad.net/eoec/
+
+Izradi ovog dodatka najviše su doprineli Daniel Darabos i Kalman Szalai
+
+=========== USLOVI KORIŠĆENJA ===========
+
+Ovaj program je slobodan softver; možete ga raspodeljivati i/ili ga menjati pod
+uslovima GNU Opšte Javne Licence (GNU GPL) kako je objavljuje Zadužbina za 
+Slobodni Softver (FSF); bilo verzije 3 te Licence, bilo (po vašem nahođenju) 
+bilo koje novije verzije.
+
+Ovaj program se raspodeljuje u nadi da će biti od koristi, ali BEZ IKAKVIH
+GARANCIJA; čak i bez podrazumevane garancije KORISNOSTI ili PRILAGOĐENOSTI
+ODREĐENOJ NAMENI.  Vidite GNU Opštu Javnu Licencu za više detalja.
+
+Pun tekst Licence možete pročitati na http://www.gnu.org/licenses/gpl-3.0.txt

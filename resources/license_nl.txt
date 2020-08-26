@@ -1,0 +1,25 @@
+============= IMPORTANT NOTES =============
+
+Dank voor het kiezen van Barcode!
+
+Deze extensie is te gebruiken na het herstarten van het programma. Als de Snelstarten geladen is, moet ook die afgesloten worden voor het herstarten.
+
+Dit is een voorbeeld-extensie gemaakt met EuroOffice Extension Creator (van MultiRacio Ltd.).
+
+Bezoek als u vragen heeft https://launchpad.net/eoec/
+
+De belangrijkste bijdragen aan de ontwikkeling van deze extensie zijn geleverd door: Daniel Darabos, Kalman Szalai
+
+============= TERMS OF USE =============
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+The full text of the license can be read at http://www.gnu.org/licenses/gpl-3.0.txt

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<tree_view>
+	<help_section application="eoec" id="eoec" title="EuroOffice dodaci">
+		<node id="barcode" title="Barkod">
+			<topic id="eoec/org.openoffice.barcode/page1.xhp">Kako da koristite dodatak barkod</topic>
+		</node>
+	</help_section>
+</tree_view>

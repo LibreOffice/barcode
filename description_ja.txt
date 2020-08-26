@@ -1,0 +1,1 @@
+本拡張機能は EuroOffice Extension Creator により作成されました。OpenOffice.org Draw の挿入メニューに「バーコード」の挿入メニューアイテムを追加します。インストール後、再起動が必要です。

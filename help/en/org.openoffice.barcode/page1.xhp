@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<helpdocument version="1.1">
+<meta>
+<topic id="barcode" indexer="include" status="PUBLISH">
+<title id="title">Barcode</title>
+<filename>/org.openoffice.barcode/page1.xhp</filename>
+</topic>
+</meta>
+<body>
+
+<bookmark xml-lang="en-US" branch="index" id="bm1">
+<bookmark_value>Barcode</bookmark_value>
+</bookmark>
+
+<bookmark xml-lang="en-US" branch="hid/org.openoffice.barcode:About" id="bm2" localize="false" />
+
+<paragraph role="heading" level="1">Barcode
+</paragraph>
+<paragraph role="paragraph">
+
+Barcode is an EuroOffice Extension Creator example extension for <item type="productname">%PRODUCTNAME</item> Draw.
+It inserts a new "Insert Barcode" menu item at the bottom of the Insert menu in OpenOffice.org Draw.
+This menu item opens the Barcode dialog.
+Enter a number and select the type of barcode to be created and a barcode will be generated and inserted into the document.
+
+</paragraph>
+<paragraph role="paragraph">
+
+Please keep in mind that this is an early version of this open-source product.
+The developers have made a good effort to make sure the barcodes are generated according to the specifications,
+but the product has not yet been extensively tested to verify this.
+It is recommended to use a barcode reader to verify the generated barcodes yourself before printing them on the packages of a million products.
+
+</paragraph>
+<paragraph role="paragraph">
+
+To download updates or contact the developers visit the <link href="http://extensions.services.openoffice.org/project/barcode">page of the extension</link>.
+
+</paragraph>
+
+
+</body>
+</helpdocument>

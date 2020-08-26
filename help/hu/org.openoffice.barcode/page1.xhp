@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<helpdocument version="1.1">
+<meta>
+<topic id="barcode" indexer="include" status="PUBLISH">
+<title id="title">Vonalkód</title>
+<filename>/org.openoffice.barcode/page1.xhp</filename>
+</topic>
+</meta>
+<body>
+
+<bookmark xml-lang="hu" branch="index" id="bm1">
+<bookmark_value>Vonalkód</bookmark_value>
+</bookmark>
+
+<bookmark xml-lang="en-US" branch="hid/org.openoffice.barcode:About" id="bm2" localize="false" />
+
+<paragraph role="heading" level="1">Vonalkód
+</paragraph>
+<paragraph role="paragraph">
+
+A Vonalkód kiterjesztés egy példaprogram az EuroOffice Extension Creator eszközhöz, mely egy új menüpontot ad az <item type="productname">%PRODUCTNAME</item> Rajzoló Beszúrás menüjéhez.
+Ezzel a "Vonalkód beszúrása" menüponttal nyitható meg a Vonalkód párbeszédablak.
+Egy szám megadása és a vonalkód típusának kiválasztása után a kiterjesztés elkészíti és a dokumentumba helyezi a vonalkódot.
+
+</paragraph>
+<paragraph role="paragraph">
+
+Felhívjuk a figyelmét, hogy ez egy nyílt forrású termék egy korai verziója.
+A fejlesztők igyekeztek a vonalkódok generálását a szabványoknak megfelelően leprogramozni,
+de nem tudták a kiterjesztést kimerítő teszteléssel ellenőrizni.
+Emiatt ajánlott a kapott vonalkódot vonalkódolvasóval ellenőrizni nyomtatás előtt.
+
+</paragraph>
+<paragraph role="paragraph">
+
+Frissítések letölthetők és a fejlesztők elérhetők a <link href="http://extensions.services.openoffice.org/project/barcode">kiterjesztés honlapján</link>.
+
+</paragraph>
+
+
+</body>
+</helpdocument>

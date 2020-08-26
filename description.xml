@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description xmlns="http://openoffice.org/extensions/description/2006"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+
+	<identifier value="org.openoffice.barcode"></identifier>
+
+	<version value="1.3.5.0"></version>
+
+	<registration>
+		<simple-license  accept-by="admin" default-license-id="en" suppress-on-update="true">
+			<license-text xlink:href="resources/license_en.txt" lang="en" license-id="en" />
+			<license-text xlink:href="resources/license_sr.txt" lang="sr" />
+			<license-text xlink:href="resources/license_sh.txt" lang="sh" />
+			<license-text xlink:href="resources/license_de.txt" lang="de" />
+			<license-text xlink:href="resources/license_nl.txt" lang="nl" />
+			<license-text xlink:href="resources/license_ru.txt" lang="ru" />
+		</simple-license>
+	</registration>
+
+	<display-name>
+		<name lang="en">Barcode</name>
+		<name lang="hu">Vonalkód</name>
+		<name lang="sr">Баркод</name>
+		<name lang="sh">Barkod</name>
+		<name lang="de">Strichcode</name>
+		<name lang="ru">Штрихкод</name>
+		<name lang="ja">Barcode</name>
+	</display-name>
+
+	<publisher>
+		<name xlink:href="https://launchpad.net/eoec/" lang="en">EOEC</name>
+	</publisher>
+
+	<icon>
+		<default xlink:href="extensionicon.png" />
+	</icon>
+
+</description>

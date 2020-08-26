@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<helpdocument version="1.1">
+<meta>
+<topic id="barcode" indexer="include" status="PUBLISH">
+<title id="title">Штрихкод</title>
+<filename>/org.openoffice.barcode/page1.xhp</filename>
+</topic>
+</meta>
+<body>
+
+<bookmark xml-lang="ru" branch="index" id="bm1">
+<bookmark_value>Штрихкод</bookmark_value>
+</bookmark>
+
+<bookmark xml-lang="ru" branch="hid/org.openoffice.barcode:About" id="bm2" localize="false" />
+
+<paragraph role="heading" level="1">Штрихкод
+</paragraph>
+<paragraph role="paragraph">
+
+Штрихкод это пример расширения созданного Конструктором Расширений EuroOffice для <item type="productname">%PRODUCTNAME</item>: Рисование (англ. Draw).
+Оно добавляет новый элемент "Вставить Штрихкод" в меню Вставка в OpenOffice: Рисование (англ. Draw).
+Этот элемент меню открывает диалог "Штрихкод".
+Введите номер и выберите тип создаваемого штрихкода и сгенерированный штрихкод будет вставлен в документ. 
+
+</paragraph>
+<paragraph role="paragraph">
+
+Пожалуйста, имейте в виду что это ранняя версия продукта с открытыми исходниками.
+Разработчики сделали все возможное для того что бы штрихкоды генерировались в соответствие со спецификациями,
+но продукт еще не достаточно экстенсивно тестировался для того чтобы подвердить это.
+Рекоммендуется использовать сканер штрихкода для самостоятельной проверки сгенерированных штрихкодов, перед тем как печатать их на упаковке продуктов.
+
+</paragraph>
+<paragraph role="paragraph">
+
+Для того что бы скачать обновления или связаться с разработчиками посетите <link href="http://extensions.services.openoffice.org/project/barcode">веб страницу расширения</link>.
+
+</paragraph>
+
+
+</body>
+</helpdocument>

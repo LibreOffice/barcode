@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<helpdocument version="1.1">
+<meta>
+<topic id="barcode" indexer="include" status="PUBLISH">
+<title id="title">Code-barre</title>
+<filename>/org.openoffice.barcode/page1.xhp</filename>
+</topic>
+</meta>
+<body>
+
+<bookmark xml-lang="fr-FR" branch="index" id="bm1">
+<bookmark_value>Barcode</bookmark_value>
+</bookmark>
+
+<bookmark xml-lang="en-US" branch="hid/org.openoffice.barcode:About" id="bm2" localize="false" />
+
+<paragraph role="heading" level="1">Barcode
+</paragraph>
+<paragraph role="paragraph">
+
+Barcode est un exemple d'extension EuroOffice Extension Creator pour <item type="productname">%PRODUCTNAME</item> Draw.
+Elle insère une nouvelle option de menu « Insérer un code-barre » en bas du menu Insertion dans OpenOffice.org Draw.
+Cette option de menu ouvre la boîte de dialogue Code-barre.
+Saisissez un numéro et sélectionnez le type de code-barre à créer et un code-barre sera généré et inséré dans le document.
+
+</paragraph>
+<paragraph role="paragraph">
+
+Veuillez noter que c'est une version récente de ce produit open source.
+Les développeurs ont fait un effort spécial pour s'assurer que les code-barres sont générés en respectant les spécifications, mais le produit n'a pas encore été testé de façon suffisamment intense pour le vérifier.
+Il est recommandé d'utiliser un lecteur de code-barres pour vérifier les code-barres que vous avez généré avant de les imprimer sur l'emballage de millions de produits. 
+
+</paragraph>
+<paragraph role="paragraph">
+
+Pour télécharger des mises à jour ou contacter les développeurs, visitez la <link href="http://extensions.services.openoffice.org/project/barcode">page des extensions</link>.
+
+</paragraph>
+
+
+</body>
+</helpdocument>

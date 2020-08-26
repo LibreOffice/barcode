@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<oor:component-schema
+	oor:name="BarcodeSettings"
+	oor:package="org.openoffice"
+	xml:lang="en-US"
+	xmlns:oor="http://openoffice.org/2001/registry"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<component>
+		<group oor:name="ConfigNode">
+			<prop oor:name="Origin" oor:type="xs:string"/>
+			<prop oor:name="FirstRun" oor:type="xs:boolean"/>
+			
+			<prop oor:name="LastBarcodeType" oor:type="xs:string"/>
+			<prop oor:name="LastChecksum" oor:type="xs:boolean"/>
+			<prop oor:name="HeightModify" oor:type="xs:string"/>
+			<prop oor:name="WidthModify" oor:type="xs:string"/>
+		</group>
+	</component>
+</oor:component-schema>
