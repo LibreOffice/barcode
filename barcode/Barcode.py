@@ -26,20 +26,6 @@ com_sun_star_drawing_TextHorizontalAdjust_CENTER = 1
 
 class Barcode( ComponentBase, XMouseListener, XActionListener ):
     SUPPORTED_LANGUAGES = SUPPORTED_LANGUAGES
-    def firstrun( self ):
-        for t in documenttypes:
-            try:    # some document types may not be available at all
-                self.addMenuItem( t, '.uno:ExtendedHelp', self.localize( 'about' ), 'showabout' )
-            except:
-                debug( 'could not install help menu in ' + t )
-                debugexception()
-    def uninstall( self ):
-        for t in documenttypes:
-            try:    # some document types may not be available at all
-                self.removeMenuItem( t, 'showabout' )
-            except:
-                debug( 'could not uninstall help menu in ' + t )
-                debugexception()
 
     def insert( self ):
         dlg = self.createdialog( 'Barcode' )

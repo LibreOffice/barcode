@@ -293,25 +293,6 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         except Exception:
             debugexception()
 
-    def dumpMenus( self, documenttype ):
-        aUIMgr = self.ctx.ServiceManager.createInstanceWithContext( 'com.sun.star.ui.ModuleUIConfigurationManagerSupplier', self.ctx )
-        xUIMgr = aUIMgr.getUIConfigurationManager( documenttype )
-        settings = xUIMgr.getSettings( 'private:resource/menubar/menubar', True )
-
-        def dumpMenu( items, depth = 0 ):
-            tabs = '-'*depth
-            for i in range( items.getCount() ):
-                menu = unprops( items.getByIndex( i ) )
-                line = [tabs]
-                keys = list(menu.keys())
-                keys.sort()
-                for k in keys:
-                    line.append( '%s: %s'%(k, menu[k]) )
-                debug( ' '.join( line ) )
-                if 'ItemDescriptorContainer' in menu and menu.ItemDescriptorContainer:
-                    dumpMenu( menu.ItemDescriptorContainer, depth + 1 )
-        dumpMenu( settings )
-
     def commandURL( self, command ):
         return 'service:org.libreoffice.%s?%s'%(self.__class__.__name__, command)
 
@@ -333,79 +314,6 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         for c in dlg.getControls():
             setattr( dlg, c.Model.Name, c )
         return dlg
-
-    def addMenuItem( self, documenttype, menu, title, command, submenu = False, inside = True ):
-        aUIMgr = self.ctx.ServiceManager.createInstanceWithContext( 'com.sun.star.ui.ModuleUIConfigurationManagerSupplier', self.ctx )
-        xUIMgr = aUIMgr.getUIConfigurationManager( documenttype )
-        settings = xUIMgr.getSettings( 'private:resource/menubar/menubar', True )
-
-        def findCommand( items, command ):
-            for i in range( items.getCount() ):
-                menu = unprops( items.getByIndex( i ) )
-                if 'CommandURL' in menu and menu.CommandURL == command:
-                    if inside and 'ItemDescriptorContainer' in menu and menu.ItemDescriptorContainer:
-                        return menu.ItemDescriptorContainer, 0
-                    else:
-                        return items, i + 1
-                if 'ItemDescriptorContainer' in menu and menu.ItemDescriptorContainer:
-                    container, index = findCommand( menu.ItemDescriptorContainer, command )
-                    if container is not None:
-                        return container, index
-            return None, None
-
-        newmenu = EasyDict()
-        if submenu:
-            newmenu.CommandURL = command
-            newmenu.ItemDescriptorContainer = xUIMgr.createSettings()
-        elif ':' not in command:
-            newmenu.CommandURL = self.commandURL( command )
-        else:
-            newmenu.CommandURL = command
-        newmenu.Label = title
-        newmenu.Type = 0
-
-        container, index = findCommand( settings, newmenu.CommandURL )
-        if index == 0:
-            # assume this submenu was created by us and ignore it
-            return
-        while container is not None:
-            uno.invoke( container, 'removeByIndex', (index-1,) )
-            container, index = findCommand( settings, newmenu.CommandURL )
-
-        container, index = findCommand( settings, menu )
-        assert container is not None, '%s not found in %s'%(menu, documenttype)
-
-        # we need uno.invoke() to pass PropertyValue array as Any
-        uno.invoke( container, 'insertByIndex', (index, anyprops( newmenu )) )
-        xUIMgr.replaceSettings( 'private:resource/menubar/menubar', settings)
-        xUIMgr.store()
-    def removeMenuItem( self, documenttype, command, submenu = False ):
-        aUIMgr = self.ctx.ServiceManager.createInstanceWithContext( 'com.sun.star.ui.ModuleUIConfigurationManagerSupplier', self.ctx )
-        xUIMgr = aUIMgr.getUIConfigurationManager( documenttype )
-        settings = xUIMgr.getSettings( 'private:resource/menubar/menubar', True )
-
-        def findCommand( items, command ):
-            for i in range( items.getCount() ):
-                menu = unprops( items.getByIndex( i ) )
-                if 'CommandURL' in menu and menu.CommandURL == command:
-                    return items, i + 1
-                if 'ItemDescriptorContainer' in menu and menu.ItemDescriptorContainer:
-                    container, index = findCommand( menu.ItemDescriptorContainer, command )
-                    if container is not None:
-                        return container, index
-            return None, None
-
-        if submenu or ':' in command:
-            url = command
-        else:
-            url = self.commandURL( command )
-
-        container, index = findCommand( settings, url )
-        while container is not None:
-            uno.invoke( container, 'removeByIndex', (index-1,) )
-            container, index = findCommand( settings, url )
-        xUIMgr.replaceSettings( 'private:resource/menubar/menubar', settings)
-        xUIMgr.store()
 
     def execute( self, args ):
         try:

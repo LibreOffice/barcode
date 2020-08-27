@@ -29,3 +29,19 @@ Generates the following Barcode types in LibreOffice:
     * *Hint: Show the error log to view the output of the run configuration (Window->Show View->Error Log)*
 
 The extension will be installed in LibreOffice (see Tools->Extension Manager)
+
+## Original Credits
+
+This extension was originally created with the EuroOffice Extension Creator (by MultiRacio Ltd.)
+
+* Code: Daniel Darabos, Kalman Szalai
+* Chinese translation: Jack Shen
+* Danish translation: Leif Lodahl
+* Dutch translation: Nouws Cor
+* French translation: Sophie Gautier
+* German translation: Jens Binfet
+* Japanese translation: Takaya Kubota
+* Russian translation: Basil Shubin
+* Serbian translation: Goran Rakic
+
+For recent credits, see https://github.com/LibreOffice/barcode/graphs/contributors
