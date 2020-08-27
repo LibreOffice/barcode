@@ -27,9 +27,9 @@
   <dlg:titledbox dlg:id="SizeFrame" dlg:tab-index="18" dlg:left="1" dlg:top="128" dlg:width="158" dlg:height="40" dlg:help-text="&amp;822.Barcode.SizeFrame.HelpText">
    <dlg:title dlg:value="&amp;823.Barcode.SizeFrame.Label"/>
   </dlg:titledbox>
-  <dlg:text dlg:id="Width" dlg:tab-index="20" dlg:left="32" dlg:top="140" dlg:width="124" dlg:height="8" dlg:help-text="&amp;837.Barcode.Width.HelpText" dlg:value="&amp;838.Barcode.Width.Label"/>
-  <dlg:text dlg:id="Height" dlg:tab-index="22" dlg:left="32" dlg:top="154" dlg:width="124" dlg:height="8" dlg:help-text="&amp;852.Barcode.Height.HelpText" dlg:value="&amp;853.Barcode.Height.Label"/>
-  <dlg:combobox dlg:id="WidthModify" dlg:tab-index="19" dlg:left="4" dlg:top="139" dlg:width="26" dlg:height="12" dlg:help-text="&amp;882.Barcode.WidthModify.HelpText" dlg:value="&amp;890.Barcode.WidthModify.Text" dlg:spin="true" dlg:maxlength="4" dlg:linecount="8">
+  <dlg:text dlg:id="Width" dlg:tab-index="20" dlg:left="36" dlg:top="140" dlg:width="120" dlg:height="8" dlg:help-text="&amp;837.Barcode.Width.HelpText" dlg:value="&amp;838.Barcode.Width.Label"/>
+  <dlg:text dlg:id="Height" dlg:tab-index="22" dlg:left="36" dlg:top="154" dlg:width="120" dlg:height="8" dlg:help-text="&amp;852.Barcode.Height.HelpText" dlg:value="&amp;853.Barcode.Height.Label"/>
+  <dlg:combobox dlg:id="WidthModify" dlg:tab-index="19" dlg:left="4" dlg:top="139" dlg:width="30" dlg:height="12" dlg:help-text="&amp;882.Barcode.WidthModify.HelpText" dlg:value="&amp;890.Barcode.WidthModify.Text" dlg:spin="true" dlg:maxlength="4" dlg:linecount="8">
    <dlg:menupopup>
     <dlg:menuitem dlg:value="&amp;883.WidthModify.StringItemList"/>
     <dlg:menuitem dlg:value="&amp;884.WidthModify.StringItemList"/>
@@ -40,7 +40,7 @@
     <dlg:menuitem dlg:value="&amp;889.WidthModify.StringItemList"/>
    </dlg:menupopup>
   </dlg:combobox>
-  <dlg:combobox dlg:id="HeightModify" dlg:tab-index="21" dlg:left="4" dlg:top="153" dlg:width="26" dlg:height="12" dlg:help-text="&amp;891.Barcode.HeightModify.HelpText" dlg:value="&amp;902.Barcode.HeightModify.Text" dlg:spin="true" dlg:maxlength="4" dlg:linecount="8">
+  <dlg:combobox dlg:id="HeightModify" dlg:tab-index="21" dlg:left="4" dlg:top="153" dlg:width="30" dlg:height="12" dlg:help-text="&amp;891.Barcode.HeightModify.HelpText" dlg:value="&amp;902.Barcode.HeightModify.Text" dlg:spin="true" dlg:maxlength="4" dlg:linecount="8">
    <dlg:menupopup>
     <dlg:menuitem dlg:value="&amp;892.HeightModify.StringItemList"/>
     <dlg:menuitem dlg:value="&amp;893.HeightModify.StringItemList"/>
