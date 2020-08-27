@@ -1,1 +1,2 @@
-Erstellt mit dem EuroOffice Extension Creator. Intalliert einen Menüeintag "Strichcode einfügen" im Einfügen-Menü von Openoffice.org Draw. Nach der Installation ist ein Neustart erforderlich.
+Erstellt einen MenÃ¼eintag "Strichcode einfÃ¼gen" im EinfÃ¼gen-MenÃ¼ von LibreOffice Draw. 
+Nach der Installation ist ein Neustart erforderlich.

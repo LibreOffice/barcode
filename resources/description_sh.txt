@@ -1,1 +1,2 @@
-Napravljeno uz pomoć EuroOffice konstruktora dodataka. Dodatak se instalira kao „Umetni barkod“ stavka u meniju OpenOffice.org Crtanja (engl. Draw). Nakon instalacije neophodno je ponovno pokretanje programa.
+Dodatak se instalira kao „Umetni barkod“ stavka u meniju LibreOffice Crtanja (engl. Draw).
+Nakon instalacije neophodno je ponovno pokretanje programa.

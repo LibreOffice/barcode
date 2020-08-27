@@ -1,1 +1,2 @@
-Készült az EuroOffice Extension Creatorral. Egy új "Vonalkód beszúrása" menüpontot ad a rajzoló Beszúrás menüjéhez. Telepítés után kérem indítsa újra az OpenOffice.orgot.
+Egy új "Vonalkód beszúrása" menüpontot ad a rajzoló Beszúrás menüjéhez.
+Telepítés után kérem indítsa újra az LibreOffice.

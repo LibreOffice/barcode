@@ -1,1 +1,2 @@
-Created with EuroOffice Extension Creator. Installs an "Insert Barcode" menu item in the Insert menu of OpenOffice.org Draw. Restart required after installation.
+Installs an "Insert Barcode" menu item in the Insert menu of LibreOffice Draw.
+Restart required after installation.

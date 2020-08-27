@@ -1,1 +1,2 @@
-Gemaakt met EuroOffice Extension Creator. Voegt het menu "Invoegen Barcode" toe aan het menu Invoegen van OpenOffice.org Draw. Na het installeren is herstarten nodig.
+Voegt het menu "Invoegen Barcode" toe aan het menu Invoegen van LibreOffice Draw.
+Na het installeren is herstarten nodig.
