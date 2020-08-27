@@ -27,7 +27,6 @@ com_sun_star_drawing_TextHorizontalAdjust_CENTER = 1
 class Barcode( ComponentBase, XMouseListener, XActionListener ):
     SUPPORTED_LANGUAGES = SUPPORTED_LANGUAGES
     def firstrun( self ):
-        self.addMenuItem( 'com.sun.star.drawing.DrawingDocument', '.uno:InsertObjectFloatingFrame', self.localize( 'menuitem' ), 'insert' )
         for t in documenttypes:
             try:    # some document types may not be available at all
                 self.addMenuItem( t, '.uno:ExtendedHelp', self.localize( 'about' ), 'showabout' )
@@ -35,7 +34,6 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
                 debug( 'could not install help menu in ' + t )
                 debugexception()
     def uninstall( self ):
-        self.removeMenuItem( 'com.sun.star.drawing.DrawingDocument', 'insert' )
         for t in documenttypes:
             try:    # some document types may not be available at all
                 self.removeMenuItem( t, 'showabout' )

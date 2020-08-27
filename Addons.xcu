@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <oor:component-data
 	xmlns:oor="http://openoffice.org/2001/registry"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	oor:name="Addons"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" oor:name="Addons"
 	oor:package="org.openoffice.Office">
 	<node oor:name="AddonUI">
 		<node oor:name="Images">
-			<node oor:name="org.libreoffice.Barcode.abouticon" oor:op="replace">
+			<node oor:name="org.libreoffice.Barcode.abouticon"
+				oor:op="replace">
 				<prop oor:name="URL">
 					<value>service:org.libreoffice.Barcode?showabout</value>
 				</prop>
@@ -19,7 +19,8 @@
 					</prop>
 				</node>
 			</node>
-			<node oor:name="org.libreoffice.Barcode.inserticon" oor:op="replace">
+			<node oor:name="org.libreoffice.Barcode.inserticon"
+				oor:op="replace">
 				<prop oor:name="URL">
 					<value>service:org.libreoffice.Barcode?insert</value>
 				</prop>
@@ -33,5 +34,42 @@
 				</node>
 			</node>
 		</node>
+
+		<node oor:name="OfficeMenuBarMerging">
+			<node oor:name="org.libreoffice.Barcode.menu.insert"
+				oor:op="replace">
+				<node oor:name="S1" oor:op="replace">
+					<prop oor:name="MergePoint">
+						<value>.uno:InsertMenu\.uno:ObjectMenu\.uno:InsertObject</value>
+					</prop>
+					<prop oor:name="MergeCommand">
+						<value>AddBefore</value>
+					</prop>
+					<prop oor:name="MergeFallback">
+						<value>AddPath</value>
+					</prop>
+					<node oor:name="MenuItems">
+						<node oor:name="M1" oor:op="replace">
+							<prop oor:name="Title">
+								<value xml:lang="en-US">~Barcode...</value>
+								<value xml:lang="de-DE">~Strichcode...</value>
+								<value xml:lang="da">~Stregkode...</value>
+								<value xml:lang="fr-FR">~Code-barre...</value>
+								<value xml:lang="hu">~Vonalkód...</value>
+								<value xml:lang="ja-JP">バーコード...</value>
+								<value xml:lang="nl-NL">~Barcode...</value>
+								<value xml:lang="sh">~Barkod...</value>
+								<value xml:lang="sr">Баркод...</value>
+								<value xml:lang="zh-CN">条形码...</value>
+							</prop>
+							<prop oor:name="URL">
+								<value>service:org.libreoffice.Barcode?insert</value>
+							</prop>
+						</node>
+					</node>
+				</node>
+			</node>
+		</node>
+
 	</node>
 </oor:component-data>
