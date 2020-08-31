@@ -1,12 +1,9 @@
-from generatedsettings import DEBUG
 import importlib
 import glob
 import os
 import sys
 import random
 import traceback
-if DEBUG:
-    from generatedsettings import HOME
 
 import uno
 import unohelper
@@ -98,53 +95,14 @@ def unprops( props ):
         dict[p.Name] = p.Value
     return dict
 
-DEBUGFILEPLATFORMS = 'win32', 'darwin'
-def initdebug():
-    global debugfile
-    if sys.platform == 'win32':
-        debugfile = 'c:\\debug.txt' #+ str( random.randint( 100, 999 ) )
-    else:
-        debugfile = '/tmp/debug.txt' #+ str( random.randint( 100, 999 ) )
-    if sys.platform in DEBUGFILEPLATFORMS:
-        df = file( debugfile, 'w' )
-        df.close()
-        del df
-if DEBUG:
-    initdebug()
-
 def debug( *msgs ):
     try:
-        if not DEBUG: return
-        if sys.platform in DEBUGFILEPLATFORMS:
-            f = file( debugfile, 'a' )
-            for msg in msgs:
-                f.write( str( msg ).encode( 'utf-8' ) )
-                f.write( '\n' )
-        else:
-            print(msgs)
+        print(msgs)
     except:
         debugexception()
 
-def dd( *args ):
-    for a in args:
-        debug( '' )
-        debug( dir( a ) )
-
 def debugexception():
-    if not DEBUG: return
-    if sys.platform in DEBUGFILEPLATFORMS:
-        f = file( debugfile, 'a' )
-    else:
-        f = sys.stdout
-    traceback.print_exc( file=f )
-
-def debugstack():
-    if not DEBUG: return
-    if sys.platform in DEBUGFILEPLATFORMS:
-        f = file( debugfile, 'a' )
-    else:
-        f = sys.stdout
-    traceback.print_stack( file=f )
+    traceback.print_exc( file=sys.stdout )
 
 documenttypes = [
     'com.sun.star.frame.StartModule',

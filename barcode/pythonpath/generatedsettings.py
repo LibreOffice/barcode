@@ -1,2 +1,0 @@
-DEBUG = False
-HOME = ''
