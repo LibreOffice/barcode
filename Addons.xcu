@@ -46,7 +46,7 @@
 						<value>AddBefore</value>
 					</prop>
 					<prop oor:name="MergeFallback">
-						<value>AddPath</value>
+						<value>Ignore</value>
 					</prop>
 					<node oor:name="MenuItems">
 						<node oor:name="M1" oor:op="replace">
@@ -65,6 +65,9 @@
 							<prop oor:name="URL">
 								<value>service:org.libreoffice.Barcode?insert</value>
 							</prop>
+							<prop oor:name="Context" oor:type="xs:string">
+					            <value>com.sun.star.sheet.SpreadsheetDocument;com.sun.star.presentation.PresentationDocument;com.sun.star.drawing.DrawingDocument</value>
+					        </prop>
 						</node>
 					</node>
 				</node>

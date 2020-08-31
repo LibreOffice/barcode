@@ -272,6 +272,18 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
     BARLENGTH = 3000
     LONGBAREXTRALENGTH = 400
 
+    def getDrawPage(self):
+        page = None
+        model = self.getcomponent()
+        if model.supportsService("com.sun.star.text.TextDocument"):
+            page = model.DrawPage
+        elif model.supportsService("com.sun.star.sheet.SpreadsheetDocument"):
+            page = self.getcontroller().ActiveSheet.DrawPage
+        elif model.supportsService("com.sun.star.presentation.PresentationDocument") \
+                or model.supportsService("com.sun.star.drawing.DrawingDocument"):
+            page = self.getcontroller().CurrentPage
+        return page
+
     def drawcode( self, code, barlength = None, barwidth = None):
         '''
         Draws the code described in the code parameter.
@@ -291,7 +303,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         normalbarlength =  int (int (barlength) * int (self.barlengthmodify) / 100)
         longbarlength = int ( (barlength + self.LONGBAREXTRALENGTH) * int (self.barlengthmodify) / 100 )
         doc = self.getcomponent()
-        page = self.getcontroller().CurrentPage
+        page = self.getDrawPage()
         group = self.ctx.ServiceManager.createInstance( 'com.sun.star.drawing.ShapeCollection' )
         bars = []
         x = 0
@@ -478,7 +490,7 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
     def add_text_above( self, code, text, offset = 0 ):
         offset = int (offset / 4 + int (offset/2) * int (self.barlengthmodify) / 100)
         doc = self.getcomponent()
-        page = self.getcontroller().CurrentPage
+        page = self.getDrawPage()
         group = self.ctx.ServiceManager.createInstance( 'com.sun.star.drawing.ShapeCollection' )
         group.add( code )
         shape = draw.createShape( doc, page, 'Text' )
