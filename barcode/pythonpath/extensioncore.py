@@ -218,7 +218,7 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         if string not in self.localization: return 'unlocalized: '+string        # debug
         if language in self.localization[string]:
             return self.localization[string][language]
-        elif self.SUPPORTED_LANGUAGES[0] in self.localization[string] and not DEBUG:
+        elif self.SUPPORTED_LANGUAGES[0] in self.localization[string]:
             return self.localization[string][self.SUPPORTED_LANGUAGES[0]]
         else:
             return 'unlocalized for %s: %s'%(language, string)        # debug
