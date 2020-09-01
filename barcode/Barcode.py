@@ -318,6 +318,7 @@ class Barcode( ComponentBase, XActionListener ):
                 shape.String = meta
                 shape.TextAutoGrowWidth = True
                 shape.TextAutoGrowHeight = True
+                shape.CharFontName = "Liberation Mono"
                 shape.CharHeight = int (20 * int (self.barwidthmodify) / 100)
                 shape.TextHorizontalAdjust = com_sun_star_drawing_TextHorizontalAdjust_CENTER
                 draw.setpos( shape, x-200, normalbarlength, w , shape.Size.Height )
@@ -498,6 +499,7 @@ class Barcode( ComponentBase, XActionListener ):
         shape.String = text
         shape.TextAutoGrowWidth = True
         shape.TextAutoGrowHeight = True
+        shape.CharFontName = "Liberation Mono"
         shape.CharHeight = int (20 * int (self.barwidthmodify) / 100)
         shape.TextHorizontalAdjust = com_sun_star_drawing_TextHorizontalAdjust_CENTER
         if (self.isWriter()):
