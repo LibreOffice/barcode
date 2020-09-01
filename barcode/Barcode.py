@@ -275,13 +275,11 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
 
     def getDrawPage(self):
         page = None
-        model = self.getcomponent()
-        if model.supportsService("com.sun.star.text.TextDocument"):
-            page = model.DrawPage
-        elif model.supportsService("com.sun.star.sheet.SpreadsheetDocument"):
+        if self.isWriter():
+            page = self.getcomponent().DrawPage
+        elif self.isCalc():
             page = self.getcontroller().ActiveSheet.DrawPage
-        elif model.supportsService("com.sun.star.presentation.PresentationDocument") \
-                or model.supportsService("com.sun.star.drawing.DrawingDocument"):
+        elif self.isImpress() or self.isDraw():
             page = self.getcontroller().CurrentPage
         return page
 

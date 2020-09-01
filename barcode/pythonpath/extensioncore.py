@@ -299,6 +299,15 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
     def isWriter(self):
         return self.getcomponent().supportsService("com.sun.star.text.TextDocument")
 
+    def isDraw(self):
+        return self.getcomponent().supportsService("com.sun.star.drawing.DrawingDocument")
+
+    def isImpress(self):
+        return self.getcomponent().supportsService("com.sun.star.presentation.PresentationDocument")
+
+    def isCalc(self):
+        return self.getcomponent().supportsService("com.sun.star.sheet.SpreadsheetDocument")
+
     def box( self, message, kind = 'infobox', buttons = 'OK', title = None ):
         if kind == 'infobox' and buttons != 'OK':
             kind = 'querybox'    # infobox only supports OK
