@@ -321,6 +321,8 @@ class Barcode( ComponentBase, XActionListener ):
                 shape.CharFontName = "Liberation Mono"
                 shape.CharHeight = int (20 * int (self.barwidthmodify) / 100)
                 shape.TextHorizontalAdjust = com_sun_star_drawing_TextHorizontalAdjust_CENTER
+                if (self.isWriter()):
+                    shape.AnchorType = AT_PARAGRAPH
                 draw.setpos( shape, x-200, normalbarlength, w , shape.Size.Height )
                 group.add( shape )
             x += w
