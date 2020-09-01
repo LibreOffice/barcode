@@ -12,6 +12,7 @@ import uno, unohelper
 from com.sun.star.task import XJobExecutor
 from com.sun.star.document import XEventListener
 from com.sun.star.awt import XMouseListener, XActionListener
+from com.sun.star.text.TextContentAnchorType import AT_PARAGRAPH
 
 import draw
 import code128
@@ -326,6 +327,8 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
             x += w
         shape = draw.createPolygon( doc, page, bars, color = draw.RGB( 0, 0, 0 ) )
         shape.LineStyle = 0
+        if (self.isWriter()):
+            shape.AnchorType = AT_PARAGRAPH
         group.add( shape )
         return page.group( group )
     def draw_UPCA( self, value, add_checksum ):
@@ -499,8 +502,12 @@ class Barcode( ComponentBase, XMouseListener, XActionListener ):
         shape.TextAutoGrowHeight = True
         shape.CharHeight = int (20 * int (self.barwidthmodify) / 100)
         shape.TextHorizontalAdjust = com_sun_star_drawing_TextHorizontalAdjust_CENTER
+        if (self.isWriter()):
+            shape.AnchorType = AT_PARAGRAPH
+
         draw.setpos( shape, (code.Size.Width - shape.Size.Width) / 2, 0 - 1000 + offset )
         group.add( shape )
+
         return page.group( group )
 
     def checksum_UPCA( self, code ):

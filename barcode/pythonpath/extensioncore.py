@@ -296,6 +296,9 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         except:
             debugexception()
 
+    def isWriter(self):
+        return self.getcomponent().supportsService("com.sun.star.text.TextDocument")
+
     def box( self, message, kind = 'infobox', buttons = 'OK', title = None ):
         if kind == 'infobox' and buttons != 'OK':
             kind = 'querybox'    # infobox only supports OK
@@ -348,4 +351,3 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         except Exception:
             debugexception()
     getServiceName = classmethod( getServiceName )
-
