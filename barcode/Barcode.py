@@ -330,6 +330,7 @@ class Barcode( ComponentBase, XActionListener ):
         shape.LineStyle = 0
         if (self.isWriter()):
             shape.AnchorType = AT_PARAGRAPH
+            draw.setpos(shape, -200, 0) # Writer needs some positioning hack due to DrawPage differences
         group.add( shape )
         return page.group( group )
     def draw_UPCA( self, value, add_checksum ):
