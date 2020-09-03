@@ -323,14 +323,26 @@ class Barcode( ComponentBase, XActionListener ):
                 shape.TextHorizontalAdjust = com_sun_star_drawing_TextHorizontalAdjust_CENTER
                 if (self.isWriter()):
                     shape.AnchorType = AT_PARAGRAPH
-                draw.setpos( shape, x-200, normalbarlength, w , shape.Size.Height )
+                if self.isWriter() or self.isDraw() or self.isImpress():
+                    pos_x = x - 200;
+                else: # Calc
+                    pos_x = x
+                draw.setpos( shape, pos_x, normalbarlength, w , shape.Size.Height )
                 group.add( shape )
             x += w
         shape = draw.createPolygon( doc, page, bars, color = draw.RGB( 0, 0, 0 ) )
         shape.LineStyle = 0
         if (self.isWriter()):
             shape.AnchorType = AT_PARAGRAPH
-            draw.setpos(shape, -200, 0) # Writer needs some positioning hack due to DrawPage differences
+            # Writer needs some positioning hack due to DrawPage differences
+            last = self.config.LastBarcodeType
+            if last == 'EAN13' or last == 'ISBN13' or last == 'Bookland' or last == 'UPCA' \
+                or last == 'JAN' or last == 'UPCE':
+                draw.setpos(shape, 300, 0)
+            elif last == 'EAN8' or last == 'STANDARD2OF5':
+                draw.setpos(shape, -200, 0)
+            else: # INTERLEAVED2OF5, CODE128
+                draw.setpos(shape, 0, 0)
         group.add( shape )
         return page.group( group )
     def draw_UPCA( self, value, add_checksum ):
