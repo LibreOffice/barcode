@@ -492,16 +492,18 @@ class Barcode( ComponentBase, XActionListener ):
         else:
             assert False, 'unless there are letters in the code this is not reachable'
 
-        for l in file( self.path + '/ranges.js' ):        # the file for publisher ranges comes from http://www.isbn-international.org/converter/ranges.js
-            if l.startswith( 'gi.area%s.pubrange'%group ):
-                ranges = l.split( '"' )[1]
-                for r in ranges.split( ';' ):
-                    start, end = r.split( '-' )
-                    if start <= code <= end:
-                        publisher = code[:len( start )]
-                        title = code[len( start ):]
-                        return '-'.join( (group, publisher, title) )
-                return '-'.join( (group, code) )
+        # the file for publisher ranges comes from http://www.isbn-international.org/converter/ranges.js
+        with open(self.path + '/ranges.js') as ranges_file:
+            for l in ranges_file:
+                if l.startswith( 'gi.area%s.pubrange'%group ):
+                    ranges = l.split( '"' )[1]
+                    for r in ranges.split( ';' ):
+                        start, end = r.split( '-' )
+                        if start <= code <= end:
+                            publisher = code[:len( start )]
+                            title = code[len( start ):]
+                            return '-'.join( (group, publisher, title) )
+                    return '-'.join( (group, code) )
         return '-'.join( (group, publisher, title) )
 
     def add_text_above( self, code, text, offset = 0 ):
