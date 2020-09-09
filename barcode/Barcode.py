@@ -586,18 +586,6 @@ class Barcode( ComponentBase, XActionListener ):
             exec(code)
         except:
             debugexception()
-    def on_action_SaveDialogs( self ):
-        try:
-            dialogs = 'EOECBarcodeDialogs'
-            installed = os.path.join( self.path, dialogs )
-            development = os.path.join( HOME, dialogs )
-            for f in os.listdir( installed ):
-                if f == 'RegisteredFlag': continue
-                contents = file( os.path.join( installed, f ), 'rb' ).read()
-                file( os.path.join( development, f ), 'wb' ).write( contents )
-            debug( 'dialogs saved' )
-        except:
-            debugexception()
     # XActionListener
     def actionPerformed( self, event ):
         try:
