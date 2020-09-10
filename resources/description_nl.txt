@@ -1,2 +1,2 @@
-Voegt het menu "Invoegen Barcode" toe aan het menu Invoegen van LibreOffice Draw.
+Voegt het menu "Invoegen Barcode" toe aan het menu Invoegen van LibreOffice.
 Na het installeren is herstarten nodig.

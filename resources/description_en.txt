@@ -1,2 +1,2 @@
-Installs an "Insert Barcode" menu item in the Insert menu of LibreOffice Draw.
+Installs an "Insert Barcode" menu item in the Insert menu of LibreOffice.
 Restart required after installation.
