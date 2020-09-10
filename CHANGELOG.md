@@ -1,5 +1,8 @@
 # Barcode-Extension Changelog
 
+## 2.0.1
+* Fix issue with reading bundled file
+
 ## 2.0.0
 * Codebase migrated to Python 3
 * LibreOffice >= 4.0 now supported
