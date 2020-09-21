@@ -580,12 +580,6 @@ class Barcode( ComponentBase, XActionListener ):
             return self.checksum_UPCA( code )
         else:
             return self.checksum_UPCA( '0' + code )
-    def on_action_ExecuteCode( self ):
-        try:
-            code = self.dlg.CodeField.Model.Text
-            exec(code)
-        except:
-            debugexception()
     # XActionListener
     def actionPerformed( self, event ):
         try:
