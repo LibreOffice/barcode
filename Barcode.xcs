@@ -17,6 +17,8 @@
 			<prop oor:name="LastChecksum" oor:type="xs:boolean"/>
 			<prop oor:name="HeightModify" oor:type="xs:int"/>
 			<prop oor:name="WidthModify" oor:type="xs:int"/>
+			<prop oor:name="PositionX" oor:type="xs:int"/>
+			<prop oor:name="PositionY" oor:type="xs:int"/>
 		</group>
 	</component>
 </oor:component-schema>

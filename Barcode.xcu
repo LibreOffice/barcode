@@ -25,5 +25,11 @@
 		<prop oor:name="WidthModify" oor:type="xs:int">
 			<value>100</value>
 		</prop>
+		<prop oor:name="PositionX" oor:type="xs:int">
+			<value>5000</value>
+		</prop>
+		<prop oor:name="PositionY" oor:type="xs:int">
+			<value>5000</value>
+		</prop>
 	</node>
 </oor:component-data>

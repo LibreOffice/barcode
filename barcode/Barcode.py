@@ -41,6 +41,8 @@ class Barcode( ComponentBase, XActionListener ):
         dlg.WithChecksum.State = self.config.LastChecksum
         dlg.HeightModify.Text = self.config.HeightModify
         dlg.WidthModify.Text = self.config.WidthModify
+        dlg.PositionX.Text = self.config.PositionX
+        dlg.PositionY.Text = self.config.PositionY
 
         while True:
             ok = dlg.execute()
@@ -56,11 +58,13 @@ class Barcode( ComponentBase, XActionListener ):
                 self.config.LastChecksum = dlg.WithChecksum.State
                 self.config.HeightModify = dlg.HeightModify.Text
                 self.config.WidthModify = dlg.WidthModify.Text
+                self.config.PositionX = dlg.PositionX.Text
+                self.config.PositionY = dlg.PositionY.Text
                 self.config.commitChanges()
                 self.barlengthmodify = dlg.HeightModify.Text
                 self.barwidthmodify = dlg.WidthModify.Text
                 group = getattr( self, 'draw_%s'%codetype )( value, dlg.WithChecksum.State )
-                draw.setpos( group, 5000, 5000 )
+                draw.setpos( group, self.config.PositionX, self.config.PositionY )
                 return
 # Removes spaces and minus sign (-) characters from the input value
     def remove_spaces( self, value ):
