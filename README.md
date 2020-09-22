@@ -28,7 +28,9 @@ The extension works in LibreOffice Writer, Calc, Impress and Draw.
 
 When installed, the extension adds the following menu entry: *Insert→Object→Barcode*
 
-Insert the Barcode by using the dialog.
+Insert the Barcode by using the dialog:
+
+![Barcode dialog](resources/barcode-dialog.png)
 
 ### API
 
