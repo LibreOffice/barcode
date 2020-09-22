@@ -11,6 +11,7 @@ import unohelper
 from com.sun.star.beans import XPropertySet
 from com.sun.star.task import XJob, XJobExecutor
 from com.sun.star.lang import XServiceName, XInitialization, XComponent, XServiceInfo, XServiceDisplayName
+from com.sun.star.uno import RuntimeException
 
 
 def typednamedvalues( type, *args, **kwargs ):
@@ -119,6 +120,7 @@ runninginstance = None
 
 class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, XServiceInfo, XServiceDisplayName, XJobExecutor, XJob ):
     def __init__( self, *args ):
+        self.isAPIMode = False
         # store the component context for later use
         try:
             self.ctx = args[0]
@@ -309,6 +311,10 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         return self.getcomponent().supportsService("com.sun.star.sheet.SpreadsheetDocument")
 
     def box( self, message, kind = 'infobox', buttons = 'OK', title = None ):
+        # Don't show message box in API mode, throw exception instead
+        if self.isAPIMode:
+            raise RuntimeException(message, self.ctx)
+
         if kind == 'infobox' and buttons != 'OK':
             kind = 'querybox'    # infobox only supports OK
         if title is None: title = self.localize( 'title' )

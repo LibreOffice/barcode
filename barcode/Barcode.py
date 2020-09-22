@@ -13,6 +13,8 @@ from com.sun.star.task import XJobExecutor
 from com.sun.star.document import XEventListener
 from com.sun.star.awt import XActionListener
 from com.sun.star.text.TextContentAnchorType import AT_PARAGRAPH
+from com.sun.star.lang import IllegalArgumentException
+from com.sun.star.uno import RuntimeException
 
 import draw
 import code128
@@ -27,6 +29,11 @@ com_sun_star_drawing_TextHorizontalAdjust_CENTER = 1
 
 class Barcode( ComponentBase, XActionListener ):
     SUPPORTED_LANGUAGES = SUPPORTED_LANGUAGES
+
+    def __init__( self, *args ):
+        ComponentBase.__init__(self, *args)
+        self.barlengthmodify = 100
+        self.barwidthmodify = 100
 
     def insert( self ):
         dlg = self.createdialog( 'Barcode' )
@@ -185,8 +192,6 @@ class Barcode( ComponentBase, XActionListener ):
         if code128.encode( value ) is None:
             self.box( self.localize( 'CODE-128-can-not-be-encoded' ) )
             return None
-        if not add_checksum:
-            self.box( self.localize( 'CODE-128-checksum-will-be-calculated' ) )
         return value
     CODETYPES = 'EAN13', 'ISBN13', 'Bookland', 'UPCA', 'JAN', 'EAN8', 'UPCE', 'STANDARD2OF5', 'INTERLEAVED2OF5', 'CODE128'
     UPC_TABLE = {
@@ -586,6 +591,57 @@ class Barcode( ComponentBase, XActionListener ):
             getattr( self, 'on_action_' + event.Source.Model.Name )()
         except:
             debugexception()
+
+    # Override execute method from extensioncore
+    def execute( self, args ):
+        try:
+            args = unprops(args)
+        except Exception:
+            debugexception()
+
+        if 'Action' not in args:
+            super().execute(args)
+            return
+
+        # Enable API Mode (no msg boxes)
+        self.isAPIMode = True
+
+        if args['Action'] == "InsertBarcode":
+            if 'BarcodeType' not in args:
+                raise IllegalArgumentException('"BarcodeType" missing!', self, 0)
+            barcodeType = args['BarcodeType']
+            if barcodeType not in self.CODETYPES:
+                raise IllegalArgumentException("Invalid BarcodeType '{}' Valid types: {}".format(barcodeType, ', '.join(self.CODETYPES)), self, 0)
+
+            if 'BarcodeValue' not in args:
+                raise IllegalArgumentException('"BarcodeValue" missing!', self, 0)
+            barcodeValue = args['BarcodeValue']
+
+            if 'WidthScale' in args:
+                self.barwidthmodify = int(args['WidthScale'])
+            if 'HeightScale' in args:
+                self.barlengthmodify = int(args['HeightScale'])
+            positionX = 5000
+            if 'PositionX' in args:
+                positionX = args['PositionX']
+            positionY = 5000
+            if 'PositionY' in args:
+                positionY = args['PositionY']
+            addChecksum = True
+            if 'BarcodeAddChecksum' in args:
+                addChecksum = args['BarcodeAddChecksum']
+
+            self.insertBarcodeAPI(barcodeType, barcodeValue, addChecksum, positionX, positionY)
+        else:
+            raise IllegalArgumentException('No valid "Action" provided.', self, 0)
+
+    def insertBarcodeAPI(self, codetype, value, addChecksum, posX, posY):
+        value = getattr(self, 'validate_%s'%codetype)(value, addChecksum)
+        if value is None:
+            raise RuntimeException('Error validating codetype ' + codetype, self.ctx)
+
+        group = getattr(self, 'draw_%s'%codetype)(value, addChecksum)
+        draw.setpos(group, posX, posY)
 
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation(
