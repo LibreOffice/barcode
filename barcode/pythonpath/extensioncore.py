@@ -231,7 +231,8 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
             for filename in glob.glob( os.path.join( self.path, dir, 'DialogStrings_*.properties' ) ):
                 sf = os.path.split( filename )[-1]
                 lang = sf[sf.index( '_' )+1:sf.index( '_' )+3]
-                with open(filename) as f:
+                # encoding needs to be 'unicode_escape', since LibreOffice writes escaped unicode characters
+                with open(filename, encoding='unicode_escape') as f:
                     content = f.readlines()
 
                 for l in content:
