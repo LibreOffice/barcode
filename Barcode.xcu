@@ -19,10 +19,10 @@
 		<prop oor:name="LastChecksum" oor:type="xs:boolean">
 			<value>true</value>
 		</prop>
-		<prop oor:name="HeightModify" oor:type="xs:string">
+		<prop oor:name="HeightModify" oor:type="xs:int">
 			<value>100</value>
 		</prop>
-		<prop oor:name="WidthModify" oor:type="xs:string">
+		<prop oor:name="WidthModify" oor:type="xs:int">
 			<value>100</value>
 		</prop>
 	</node>

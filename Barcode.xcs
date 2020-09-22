@@ -15,8 +15,8 @@
 
 			<prop oor:name="LastBarcodeType" oor:type="xs:string"/>
 			<prop oor:name="LastChecksum" oor:type="xs:boolean"/>
-			<prop oor:name="HeightModify" oor:type="xs:string"/>
-			<prop oor:name="WidthModify" oor:type="xs:string"/>
+			<prop oor:name="HeightModify" oor:type="xs:int"/>
+			<prop oor:name="WidthModify" oor:type="xs:int"/>
 		</group>
 	</component>
 </oor:component-schema>
