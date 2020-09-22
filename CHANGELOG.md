@@ -3,6 +3,7 @@
 ## unreleased
 * Add position x/y input fields to dialog
 * Add API to insert Barcode via UNO API (see README for details)
+* Disallow inserting Barcode when value field is empty
 
 ## 2.0.1
 * Fix issue with reading bundled file
