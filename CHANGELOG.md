@@ -1,6 +1,6 @@
 # Barcode-Extension Changelog
 
-## unreleased
+## 2.1.0
 * Add position x/y input fields to dialog
 * Add API to insert Barcode via UNO API (see README for details)
 * Disallow inserting Barcode when value field is empty
