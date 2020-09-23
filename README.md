@@ -16,7 +16,7 @@ Generates the following Barcode types in LibreOffice:
 
 ## Install
 
-Download the Extension from the [LibreOffice Extension Repository](https://extensions.libreoffice.org/en/extensions/show/1046)
+Download the Extension from the [Release section](https://github.com/LibreOffice/barcode/releases). You need the .oxt file.
 
 Then install it in LibreOffice via *Tools→Extension Manager*.
 
