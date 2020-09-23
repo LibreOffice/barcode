@@ -623,8 +623,12 @@ class Barcode( ComponentBase, XActionListener ):
 
             if 'WidthScale' in args:
                 self.barwidthmodify = int(args['WidthScale'])
+                if self.barwidthmodify < 1:
+                    raise IllegalArgumentException('"WidthScale" must be > 0!', self, 0)
             if 'HeightScale' in args:
                 self.barlengthmodify = int(args['HeightScale'])
+                if self.barlengthmodify < 1:
+                    raise IllegalArgumentException('"HeightScale" must be > 0!', self, 0)
             positionX = 5000
             if 'PositionX' in args:
                 positionX = args['PositionX']

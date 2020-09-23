@@ -74,8 +74,8 @@ Parameter | Description | Possible values | Default value
 `BarcodeType` | Barcode type | `EAN13`, `ISBN13`, `Bookland`, `UPCA`, `JAN`, `EAN8`, `UPCE`, `STANDARD2OF5`, `INTERLEAVED2OF5`, `CODE128` |
 `BarcodeValue` | The actual content of the barcode. | Different barcode types have different restrictions (e.g. numbers only) |
 `BarcodeAddChecksum` | Whether a checksum should be automatically added. Ignored by some types. | `True`, `False` | `True`
-`WidthScale` | Scale the barcode horizontally. Unit is percent. A value of 200 means the barcode width is doubled. | Integer | 100
-`HeightScale` | Scale the barcode vertically. Unit is percent. A value of 200 means the barcode height is doubled. | Integer | 100
+`WidthScale` | Scale the barcode horizontally. Unit is percent. A value of 200 means the barcode width is doubled. | Integer (>0) | 100
+`HeightScale` | Scale the barcode vertically. Unit is percent. A value of 200 means the barcode height is doubled. | Integer (>0) | 100
 `PositionX` | Where the barcode is placed on the document canvas (X axis). Unit is 1/100th mm. A value of 1000 means 1cm. | Integer | 5000
 `PositionY` | Where the barcode is placed on the document canvas (Y axis). Unit is 1/100th mm. A value of 1000 means 1cm. | Integer | 5000
 
