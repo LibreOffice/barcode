@@ -119,6 +119,7 @@ documenttypes = [
 class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, XServiceInfo, XServiceDisplayName, XJobExecutor, XJob ):
     def __init__( self, *args ):
         self.isAPIMode = False
+        self.targetComponent = None
         # store the component context for later use
         try:
             self.ctx = args[0]
@@ -294,6 +295,8 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         psm = self.ctx.ServiceManager
         return psm.createInstanceWithContext( 'com.sun.star.frame.Desktop', self.ctx )
     def getcomponent( self ):
+        if (self.targetComponent):
+            return self.targetComponent
         d = self.getdesktop()
         c = d.getCurrentComponent()
         if c is None:

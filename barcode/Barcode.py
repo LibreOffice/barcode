@@ -638,6 +638,8 @@ class Barcode( ComponentBase, XActionListener ):
             addChecksum = True
             if 'BarcodeAddChecksum' in args:
                 addChecksum = args['BarcodeAddChecksum']
+            if 'TargetComponent' in args:
+                self.targetComponent = args['TargetComponent']
 
             self.insertBarcodeAPI(barcodeType, barcodeValue, addChecksum, positionX, positionY)
         else:

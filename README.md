@@ -43,7 +43,7 @@ Sub InsertBarcode
     Dim oJob as Object
     oJob = createUnoService("org.libreoffice.Barcode")
 
-    Dim args(7) as new com.sun.star.beans.NamedValue
+    Dim args(8) as new com.sun.star.beans.NamedValue
     args(0).Name = "Action"
     args(0).Value = "InsertBarcode"
     args(1).Name = "BarcodeType"
@@ -60,6 +60,8 @@ Sub InsertBarcode
     args(6).Value = "1000"
     args(7).Name = "PositionY"
     args(7).Value = "1000"
+    args(8).Name = "TargetComponent"
+    args(8).Value = ThisComponent
     oJob.execute(args)
 End Sub
 ```
@@ -78,6 +80,7 @@ Parameter | Description | Possible values | Default value
 `HeightScale` | Scale the barcode vertically. Unit is percent. A value of 200 means the barcode height is doubled. | Integer (>0) | 100
 `PositionX` | Where the barcode is placed on the document canvas (X axis). Unit is 1/100th mm. A value of 1000 means 1cm. | Integer | 5000
 `PositionY` | Where the barcode is placed on the document canvas (Y axis). Unit is 1/100th mm. A value of 1000 means 1cm. | Integer | 5000
+`TargetComponent` | Which XComponent will be used to insert the Barcode. In Basic IDE, `ThisComponent` needs to be provided for the script to work from Basic IDE. | [XComponent](https://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1lang_1_1XComponent.html) | The current component, as returned by [XDesktop::getCurrentComponent](https://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1frame_1_1XDesktop.html#a53f8ac7d73776934812a666684915908)
 
 ## Development
 
