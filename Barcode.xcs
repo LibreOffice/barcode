@@ -10,15 +10,30 @@
 
 	<component>
 		<group oor:name="ConfigNode">
-			<prop oor:name="Origin" oor:type="xs:string"/>
-			<prop oor:name="FirstRun" oor:type="xs:boolean"/>
-
-			<prop oor:name="LastBarcodeType" oor:type="xs:string"/>
-			<prop oor:name="LastChecksum" oor:type="xs:boolean"/>
-			<prop oor:name="HeightModify" oor:type="xs:int"/>
-			<prop oor:name="WidthModify" oor:type="xs:int"/>
-			<prop oor:name="PositionX" oor:type="xs:int"/>
-			<prop oor:name="PositionY" oor:type="xs:int"/>
+			<prop oor:name="Origin" oor:type="xs:string">
+				<value>%origin%</value>
+			</prop>
+			<prop oor:name="FirstRun" oor:type="xs:boolean">
+				<value>true</value>
+			</prop>
+			<prop oor:name="LastBarcodeType" oor:type="xs:string">
+				<value>EAN13</value>
+			</prop>
+			<prop oor:name="LastChecksum" oor:type="xs:boolean">
+				<value>true</value>
+			</prop>
+			<prop oor:name="HeightModify" oor:type="xs:int">
+				<value>100</value>
+			</prop>
+			<prop oor:name="WidthModify" oor:type="xs:int">
+				<value>100</value>
+			</prop>
+			<prop oor:name="PositionX" oor:type="xs:int">
+				<value>5000</value>
+			</prop>
+			<prop oor:name="PositionY" oor:type="xs:int">
+				<value>5000</value>
+			</prop>
 		</group>
 	</component>
 </oor:component-schema>
