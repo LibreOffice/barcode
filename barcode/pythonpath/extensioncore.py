@@ -116,8 +116,6 @@ documenttypes = [
     'com.sun.star.formula.FormulaProperties',
         ]
 
-runninginstance = None
-
 class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, XServiceInfo, XServiceDisplayName, XJobExecutor, XJob ):
     def __init__( self, *args ):
         self.isAPIMode = False
@@ -159,34 +157,6 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
             return self.localize( 'title', language = lang )
         except:
             debugexception()
-
-    def startup( self ):
-        '''
-        Runs at application startup.
-        Subclasses may make use of it.
-        '''
-        pass
-
-    def firstrun( self ):
-        '''
-        Runs at first startup after installation.
-        Subclasses may make use of it.
-        '''
-        pass
-
-    def coreuninstall( self ):
-        try:
-            self.uninstall()
-        except:
-            debugexception()
-        self.config.FirstRun = True    # will need to run install again (in case we are reinstalled)
-        self.config.commitChanges()
-    def uninstall( self ):
-        '''
-        Runs upon uninstallation.
-        Subclasses may make use of it.
-        '''
-        pass
 
     def getconfig( self, nodepath, update = False ):
         if update:
@@ -275,29 +245,6 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         for c in dlg.getControls():
             setattr( dlg, c.Model.Name, c )
         return dlg
-
-    def execute( self, args ):
-        try:
-            args = unprops( unprops( args ).Environment )
-            getattr( self, args.EventName )()
-        except Exception:
-            debugexception()
-
-    def onFirstVisibleTask( self ):
-        try:
-            global runninginstance
-            if runninginstance is None:
-                runninginstance = self
-            if self.config.FirstRun:
-                try:
-                    self.firstrun()
-                except:
-                    self.debugexception_and_box()
-                self.config.FirstRun = False
-                self.config.commitChanges()
-            self.startup()
-        except:
-            debugexception()
 
     def isWriter(self):
         return self.getcomponent().supportsService("com.sun.star.text.TextDocument")
