@@ -10,9 +10,6 @@
 
 	<component>
 		<group oor:name="ConfigNode">
-			<prop oor:name="Origin" oor:type="xs:string">
-				<value>%origin%</value>
-			</prop>
 			<prop oor:name="LastBarcodeType" oor:type="xs:string">
 				<value>EAN13</value>
 			</prop>

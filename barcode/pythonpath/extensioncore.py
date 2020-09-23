@@ -169,13 +169,8 @@ class ComponentBase( unohelper.Base, XServiceName, XInitialization, XComponent, 
         return configaccess
 
     def initpath( self ):
-        path = self.config.Origin
-        expander = self.ctx.getValueByName( '/singletons/com.sun.star.util.theMacroExpander' )
-        path = expander.expandMacros( path )
-        path = path[len( 'vnd.sun.star.expand:' ):]
-        path = unohelper.absolutize( os.getcwd(), path )
-        path = unohelper.fileUrlToSystemPath( path )
-        self.path = path
+        informationprovider = self.ctx.getValueByName( '/singletons/com.sun.star.deployment.PackageInformationProvider' )
+        self.path = unohelper.fileUrlToSystemPath( informationprovider.getPackageLocation('org.libreoffice.barcode') )
 
     def initlanguage( self ):
         config = self.getconfig( '/org.openoffice.Setup' )
