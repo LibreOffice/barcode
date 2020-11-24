@@ -619,7 +619,9 @@ class Barcode( ComponentBase, XActionListener ):
 
             if 'BarcodeValue' not in args:
                 raise IllegalArgumentException('"BarcodeValue" missing!', self, 0)
-            barcodeValue = args['BarcodeValue']
+            barcodeValue = str(args['BarcodeValue'])
+            if not barcodeValue:
+                raise IllegalArgumentException('Empty or invalid "BarcodeValue" given.', self, 0)
 
             if 'WidthScale' in args:
                 self.barwidthmodify = int(args['WidthScale'])
