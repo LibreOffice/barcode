@@ -53,7 +53,8 @@ class Barcode( ComponentBase, XActionListener ):
                     break
             value = dlg.CodeField.Text
             value = getattr( self, 'validate_%s'%codetype )( value, dlg.WithChecksum.State )
-            if value is not None and value != "":
+            # empty field somehow appears as "&652.Barcode.CodeField.Text"
+            if value is not None and value != "" and value != "&652.Barcode.CodeField.Text":
                 self.config.LastBarcodeType = codetype
                 self.config.LastChecksum = dlg.WithChecksum.State
                 self.config.HeightModify = dlg.HeightModify.Text
