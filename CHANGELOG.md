@@ -1,5 +1,9 @@
 # Barcode-Extension Changelog
 
+## 2.3.0
+* API: Throw error when trying to insert barcode with empty "BarcodeValue"
+* Dialog: Handle empty value field (don't insert barcode)
+
 ## 2.2.0
 * API: Allow specifying which component receives the Barcode.
 
