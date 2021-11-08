@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description xmlns="http://openoffice.org/extensions/description/2006" xmlns:d="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:l="http://libreoffice.org/extensions/description/2011">
-	<version value="2.3.0"/>
+	<version value="2.4.0"/>
 	<identifier value="org.libreoffice.barcode"/>
 	<dependencies>
 		<l:LibreOffice-minimal-version d:name="LibreOffice 4.0" value="4.0"/>

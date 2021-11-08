@@ -1,5 +1,9 @@
 # Barcode-Extension Changelog
 
+## 2.4.0
+* #4 Polish translation added
+* Make field "Position" translatable
+
 ## 2.3.0
 * API: Throw error when trying to insert barcode with empty "BarcodeValue"
 * Dialog: Handle empty value field (don't insert barcode)
