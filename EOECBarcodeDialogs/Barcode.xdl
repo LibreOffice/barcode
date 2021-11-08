@@ -55,7 +55,7 @@
    </dlg:menupopup>
   </dlg:combobox>
   <dlg:titledbox dlg:id="FrameControl1" dlg:tab-index="23" dlg:left="81" dlg:top="127" dlg:width="77" dlg:height="44" dlg:help-text="&amp;981.Barcode.FrameControl1.HelpText">
-   <dlg:title dlg:value="Position"/>
+   <dlg:title dlg:value="&amp;904.Barcode.FrameControl1.Label"/>
   </dlg:titledbox>
   <dlg:text dlg:id="Label1" dlg:tab-index="24" dlg:left="85" dlg:top="140" dlg:width="10" dlg:height="8" dlg:help-text="&amp;983.Barcode.Label1.HelpText" dlg:value="X:"/>
   <dlg:text dlg:id="Label2" dlg:tab-index="25" dlg:left="85" dlg:top="157" dlg:width="10" dlg:height="8" dlg:help-text="&amp;988.Barcode.Label2.HelpText" dlg:value="Y:"/>
