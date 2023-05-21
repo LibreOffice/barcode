@@ -16,7 +16,7 @@ Generates the following Barcode types in LibreOffice:
 
 ## Install
 
-Download the Extension from the [Release section](https://github.com/LibreOffice/barcode/releases). You need the .oxt file.
+Download the extension from the [Release section](https://github.com/LibreOffice/barcode/releases). You need the .oxt file.
 
 Then install it in LibreOffice via *Tools→Extension Manager*.
 
@@ -61,7 +61,7 @@ Sub InsertBarcode
     args(7).Name = "PositionY"
     args(7).Value = "1000"
     args(8).Name = "TargetComponent"
-    args(8).Value = ThisComponent
+    args(8).Value = "ThisComponent"
     oJob.execute(args)
 End Sub
 ```
